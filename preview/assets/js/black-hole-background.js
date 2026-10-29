@@ -71,6 +71,9 @@
     }
     context.globalAlpha = 1;
 
+    const home = document.getElementById("home");
+    if (home && !home.hidden) return;
+
     const cycle = reduceMotion.matches ? 5 : time % 18;
     const progress = Math.min(cycle / 10, 1);
     const merge = smooth(Math.max(0, Math.min(1, (cycle - 9.3) / 1.5)));
@@ -147,6 +150,7 @@
   }
 
   window.addEventListener("resize", resize);
+  window.addEventListener("hashchange", draw);
   reduceMotion.addEventListener("change", () => {
     previousFrame = 0;
     if (!reduceMotion.matches) window.requestAnimationFrame(animate);

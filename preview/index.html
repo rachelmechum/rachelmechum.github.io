@@ -1,77 +1,361 @@
 <!doctype html>
-<html lang="en" data-theme="dark" data-theme-setting="dark">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rachel Mechum | Astrophysics</title>
-  <meta name="description" content="Rachel Mechum's personal site and astrophysics research.">
-  <link rel="canonical" href="https://rachelmechum.github.io/preview/">
-  <script>if (!localStorage.getItem("theme")) localStorage.setItem("theme", "dark");</script>
-  <link rel="stylesheet" href="/preview/assets/css/tailwind.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700&display=swap">
-  <link rel="stylesheet" href="/preview/assets/css/main.css">
-  <link id="highlight_theme_light" rel="stylesheet" href="/preview/assets/css/jekyll-pygments-themes-github.css">
-  <link id="highlight_theme_dark" rel="stylesheet" href="/preview/assets/css/jekyll-pygments-themes-native.css" media="none">
-  <link rel="stylesheet" href="assets/css/rachel-palette.css">
+  <meta name="description" content="Rachel Mechum, astrophysics PhD student at Rochester Institute of Technology.">
+  <title>Rachel Mechum</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #151018;
+      --panel: #211925;
+      --ink: #f2e9df;
+      --soft: #c9bdc8;
+      --pink: #e2b2b4;
+      --lavender: #b6a7dd;
+      --sage: #aab394;
+      --line: #77657b;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      --serif: Georgia, "Times New Roman", serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 16px/1.65 var(--mono);
+    }
+    #orbit-background {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+    }
+    .site {
+      position: relative;
+      z-index: 1;
+      width: min(100% - 64px, 1240px);
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 24px 0 30px;
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 0 0 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    .wordmark {
+      color: var(--ink);
+      font-size: .95rem;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    nav { display: flex; flex-wrap: wrap; gap: 8px; }
+    nav a, .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 7px 12px;
+      border: 1px solid var(--lavender);
+      border-radius: 0;
+      background: var(--lavender);
+      color: #17121b;
+      font: 600 .75rem/1.2 var(--mono);
+      letter-spacing: 0;
+      text-decoration: none;
+      transition: background-color .16s ease, color .16s ease, border-color .16s ease;
+    }
+    nav a:hover, nav a[aria-current="page"], .button:hover {
+      border-color: var(--pink);
+      background: var(--pink);
+      color: #17121b;
+    }
+    a { color: var(--pink); text-underline-offset: 3px; }
+    a:hover { color: #fff0e7; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
+    .page { padding: 44px 0 34px; }
+    .page[hidden] { display: none; }
+    .home-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .96fr) minmax(420px, 1.04fr);
+      align-items: center;
+      gap: clamp(28px, 5vw, 74px);
+      min-height: min(72vh, 680px);
+    }
+    .person {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr);
+      align-items: center;
+      gap: 22px;
+    }
+    .portrait {
+      display: block;
+      width: 150px;
+      height: 184px;
+      object-fit: cover;
+      object-position: center;
+      border: 1px solid var(--line);
+    }
+    .location, .kicker {
+      margin: 0 0 7px;
+      color: var(--sage);
+      font-size: .68rem;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3 { margin-top: 0; }
+    h1 {
+      margin-bottom: 7px;
+      font: 600 clamp(1.55rem, 2.5vw, 2.2rem)/1.2 var(--mono);
+      letter-spacing: -.055em;
+    }
+    .role { margin: 0; color: var(--soft); font-size: .82rem; line-height: 1.5; }
+    .personal-copy { max-width: 610px; margin-top: 26px; }
+    .personal-copy p { margin: 0 0 13px; }
+    .personal-copy .work-line { color: var(--soft); }
+    .hero-art { width: 100%; max-width: 610px; margin: 0 auto; }
+    .hero-art svg { display: block; width: 100%; height: auto; overflow: visible; }
+    .art-line { fill: none; stroke: var(--lavender); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .art-pink { stroke: var(--pink); }
+    .art-sage { stroke: var(--sage); }
+    .orbiting-pair { transform-origin: 0 0; }
+    .orbiting-pair animateTransform { transform-origin: 0 0; }
+    .remnant { fill: #09070d; stroke: var(--pink); stroke-width: 2; opacity: 0; }
+    .ripple { fill: none; stroke-width: 1.5; opacity: 0; transform-origin: center; }
+    .ripple-a { stroke: var(--pink); }
+    .ripple-b { stroke: var(--sage); }
+    .page-title { margin-bottom: 9px; font: 600 clamp(1.55rem, 2.5vw, 2.2rem)/1.2 var(--mono); letter-spacing: -.055em; }
+    .page-intro { max-width: 790px; margin: 0 0 34px; color: var(--soft); }
+    .project { max-width: 900px; padding: 23px 0 25px; border-top: 1px solid var(--line); }
+    .project h2 { margin-bottom: 10px; font: 600 1rem/1.4 var(--mono); color: var(--pink); }
+    .project p { max-width: 760px; margin: 0 0 13px; }
+    .demo-link { display: inline-block; margin-top: 4px; }
+    .agn-drawing { width: min(100%, 720px); margin: 20px 0 6px; }
+    .agn-drawing svg { display: block; width: 100%; height: auto; }
+    .caption { color: var(--soft); font-size: .7rem; }
+    .disk-pair { transform-origin: 0 0; animation: diskOrbit 16s linear infinite; }
+    .disk-ripple { transform-box: fill-box; transform-origin: center; animation: diskRipple 5s ease-out infinite; }
+    .disk-ripple.delay { animation-delay: 2.4s; }
+    @keyframes diskOrbit { to { transform: rotate(360deg); } }
+    @keyframes diskRipple { 0% { opacity: .5; transform: scale(.35); } 85%, 100% { opacity: 0; transform: scale(1.5); } }
+    .post-note { max-width: 720px; margin: 20px 0; padding: 0 0 18px; border-bottom: 1px solid var(--line); }
+    .post-note h2 { margin: 0 0 6px; font: 500 1.1rem/1.4 var(--serif); color: var(--ink); }
+    .photo-row { display: flex; flex-wrap: wrap; gap: 14px; margin: 22px 0 34px; }
+    .photo-row figure { margin: 0; }
+    .photo-row img { display: block; width: 156px; height: 156px; object-fit: cover; border: 1px solid var(--line); }
+    .photo-row figcaption { margin-top: 5px; color: var(--soft); font-size: .68rem; }
+    .history { max-width: 850px; }
+    .history h2 { margin: 27px 0 13px; font: 600 1rem/1.4 var(--mono); }
+    .history-row { display: grid; grid-template-columns: 145px 1fr; gap: 18px; padding: 13px 0; border-top: 1px solid var(--line); }
+    .history-row time { color: var(--sage); font-size: .72rem; }
+    .history-row h3 { margin: 0 0 4px; font: 600 .88rem/1.4 var(--mono); }
+    .history-row p { margin: 0; color: var(--soft); font-size: .82rem; }
+    .contact-line { font-size: 1.1rem; }
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      color: var(--soft);
+      font-size: .68rem;
+    }
+    @media (max-width: 850px) {
+      .site { width: min(100% - 40px, 720px); }
+      .home-grid { grid-template-columns: 1fr; gap: 18px; padding-top: 22px; }
+      .hero-art { max-width: 500px; }
+      .person { grid-template-columns: 120px 1fr; }
+      .portrait { width: 120px; height: 150px; }
+      nav { gap: 5px; }
+      nav a { padding: 7px 9px; font-size: .66rem; }
+    }
+    @media (max-width: 560px) {
+      .site { width: min(100% - 28px, 500px); padding-top: 15px; }
+      .topbar { align-items: flex-start; flex-direction: column; gap: 12px; }
+      nav { width: 100%; }
+      .person { grid-template-columns: 94px 1fr; gap: 14px; }
+      .portrait { width: 94px; height: 122px; }
+      .role { font-size: .73rem; }
+      .page { padding-top: 29px; }
+      .history-row { grid-template-columns: 1fr; gap: 3px; }
+      footer { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .disk-pair, .disk-ripple { animation: none !important; }
+    }
+  </style>
 </head>
-<body class="fixed-top-nav">
+<body>
   <canvas id="orbit-background" aria-hidden="true"></canvas>
-  <header>
-    <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation">
-      <div class="container">
-        <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="sr-only">Toggle navigation</span><span class="icon-bar top-bar"></span><span class="icon-bar middle-bar"></span><span class="icon-bar bottom-bar"></span>
-        </button>
-        <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav">
-          <ul class="navbar-nav navbar-menu-list flex-nowrap">
-            <li class="nav-item active"><a class="nav-link" href="/preview/">about</a></li>
-            <li class="nav-item"><a class="nav-link" href="/preview/research/">research</a></li>
-            <li class="nav-item"><a class="nav-link" href="/preview/writing/">writing</a></li>
-            <li class="nav-item"><a class="nav-link" href="https://rachelmechum.github.io/assets/MechumRachel_CurriculumVitae.pdf" target="_blank" rel="noopener">CV</a></li>
-            <li class="toggle-container"><button aria-label="Change color theme" id="light-toggle" title="Change theme" type="button"><i class="fa-half-sun-moon" id="light-toggle-system"></i><i class="fa-solid fa-moon" id="light-toggle-dark"></i><i class="fa-solid fa-sun" id="light-toggle-light"></i></button></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
+  <div class="site">
+    <header class="topbar">
+      <a class="wordmark" href="#home" aria-label="Rachel Mechum home">Rachel Mechum</a>
+      <nav aria-label="Main navigation">
+        <a href="#about" data-nav="about">About</a>
+        <a href="#research" data-nav="research">Research</a>
+        <a href="#writing" data-nav="writing">Writing</a>
+        <a href="https://rachelmechum.github.io/assets/MechumRachel_CurriculumVitae.pdf" target="_blank" rel="noopener">CV</a>
+        <a href="#contact" data-nav="contact">Contact</a>
+      </nav>
+    </header>
 
-  <div class="container mt-5">
-    <div class="post">
-      <header class="post-header">
-        <h1 class="post-title"><span class="font-weight-bold">Rachel</span> Mechum</h1>
-        <p class="desc">Rochester, NY</p>
-      </header>
-      <article>
-        <div class="profile float-right">
-          <figure><img alt="Rachel Mechum" class="img-fluid z-depth-1 rounded" src="https://rachelmechum.github.io/assets/rachel-mechum.jpg" width="100%"></figure>
-        </div>
-        <div class="clearfix">
-          <p>Outside work, I like rock climbing, yoga, travel, LEGO, and gaming with friends. Ginger is my dog.</p>
-          <div class="row">
-            <div class="col-sm-6 mt-3 mt-md-0"><img class="img-fluid rounded personal-photo" src="https://rachelmechum.github.io/assets/climbing.jpg" alt="Rachel rock climbing"></div>
-            <div class="col-sm-6 mt-3 mt-md-0"><img class="img-fluid rounded personal-photo" src="https://rachelmechum.github.io/assets/ginger.jpg" alt="Ginger, Rachel's dog"></div>
+    <main>
+      <section class="page" id="home">
+        <div class="home-grid">
+          <div>
+            <div class="person">
+                <img class="portrait" src="https://rachelmechum.github.io/assets/kayak.jpg" alt="Rachel kayaking with Ginger">
+              <div>
+                <p class="location">Rochester, New York</p>
+                <h1>Rachel Mechum</h1>
+                <p class="role">PhD student in astrophysics at RIT</p>
+              </div>
+            </div>
+            <div class="personal-copy">
+              <p>I climb, do yoga, travel when I can, build LEGO sets, and play games with friends. Ginger, my dog, has strong opinions about work-life balance.</p>
+              <p class="work-line">I use gravitational-wave data and population models to study binary black hole mergers.</p>
+            </div>
           </div>
 
-          <h2>Research</h2>
-          <p>I’m a PhD student in astrophysics at RIT. I study binary black holes and the gravitational waves they produce.</p>
-          <div class="row row-cols-1 row-cols-md-2">
-            <div class="col mb-4"><a class="project-link" href="/preview/research/#waveform-systematics"><div class="card h-100 hoverable"><div class="card-body"><h3 class="card-title">Waveform systematics</h3><p class="card-text">How waveform models affect the masses and spins we infer.</p></div></div></a></div>
-            <div class="col mb-4"><a class="project-link" href="/preview/research/#agn-disks"><div class="card h-100 hoverable"><div class="card-body"><h3 class="card-title">Black holes in AGN disks</h3><p class="card-text">How binaries form in AGN disks and embedded star clusters.</p></div></div></a></div>
+          <div class="hero-art">
+            <svg viewBox="0 0 620 500" role="img" aria-label="Hand-drawn illustration of two black holes orbiting and sending out gravitational waves">
+              <g class="art-line" opacity=".75">
+                <path d="M67 224c18-55 57-91 103-107M444 108c43 8 80 32 107 69M511 385c-35 39-80 61-130 66M136 416c-34-18-61-47-78-83"/>
+                <path d="M97 125l8-17 8 17M524 180l15 9-16 8M390 447l-8 16-8-16M47 316l-15-9 16-8"/>
+                <path d="M164 79l6-12 6 12M493 92l7-11 5 12M562 321l13-5-7 13M88 445l-4 14-9-11" stroke="var(--sage)"/>
+              </g>
+              <g transform="translate(310 250) rotate(-18)">
+                <ellipse class="art-line art-sage" rx="205" ry="78" stroke-dasharray="3 8" opacity=".7"/>
+                <ellipse class="art-line" rx="150" ry="57" opacity=".45"/>
+                <path class="art-line art-pink" d="M-205 2c43-34 80-31 116-7 27 18 50 20 80 4 32-17 62-17 91 4 44 31 75 30 123-2"/>
+                <g class="orbiting-pair">
+                  <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="18s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.5;.58;.98;1" dur="18s" repeatCount="indefinite"/>
+                  <circle cx="-112" cy="0" r="39" fill="#08060c" stroke="#e2b2b4" stroke-width="2.5"/>
+                  <circle cx="118" cy="0" r="25" fill="#08060c" stroke="#b6a7dd" stroke-width="2"/>
+                  <path class="art-line art-pink" d="M-64 0c23-9 39-8 61 1M54-1c17-7 35-6 51 1" stroke-dasharray="2 6"/>
+                </g>
+                <circle class="remnant" r="31">
+                  <animate attributeName="opacity" values="0;0;0.85;0" keyTimes="0;.51;.62;1" dur="18s" repeatCount="indefinite"/>
+                </circle>
+                <ellipse class="ripple ripple-a" rx="48" ry="22">
+                  <animate attributeName="opacity" values="0;0;.65;0" keyTimes="0;.52;.62;1" dur="18s" repeatCount="indefinite"/>
+                  <animate attributeName="rx" values="48;48;245;270" keyTimes="0;.52;.88;1" dur="18s" repeatCount="indefinite"/>
+                  <animate attributeName="ry" values="22;22;94;105" keyTimes="0;.52;.88;1" dur="18s" repeatCount="indefinite"/>
+                </ellipse>
+                <ellipse class="ripple ripple-b" rx="63" ry="29">
+                  <animate attributeName="opacity" values="0;0;.42;0" keyTimes="0;.56;.66;1" dur="18s" repeatCount="indefinite"/>
+                  <animate attributeName="rx" values="63;63;220;250" keyTimes="0;.56;.9;1" dur="18s" repeatCount="indefinite"/>
+                  <animate attributeName="ry" values="29;29;82;95" keyTimes="0;.56;.9;1" dur="18s" repeatCount="indefinite"/>
+                </ellipse>
+              </g>
+            </svg>
           </div>
-
-          <h2>Writing</h2>
-          <p>Posts can be part of a series or stand alone. <a href="/preview/writing/">Browse writing</a>.</p>
         </div>
-      </article>
-    </div>
+      </section>
+
+      <section class="page" id="research" hidden>
+        <h1 class="page-title">Research</h1>
+        <p class="page-intro">I study binary black hole mergers with gravitational-wave data and population models.</p>
+
+        <article class="project">
+          <h2>Waveform systematics</h2>
+          <p>I use RIFT to study how waveform models affect the masses and spins inferred from unequal-mass binary black hole mergers.</p>
+          <p>The mass ratio is <strong>q = m₂/m₁</strong>, where m₁ is the larger mass.</p>
+          <a class="demo-link" href="/preview/mass-ratio-demo/">Try the q = m₂/m₁ waveform demo ↗</a>
+        </article>
+
+        <article class="project">
+          <h2>Black holes in AGN disks</h2>
+          <p>With McFACTS, I study how binary black holes form in AGN disks and embedded star clusters, and whether their mergers could be detected.</p>
+          <figure class="agn-visual">
+            <svg viewBox="0 0 720 230" role="img" aria-label="Schematic of two black hole binaries orbiting in an active galactic nucleus disk and sending out gravitational waves">
+              <g fill="none" stroke-linecap="round">
+                <ellipse cx="360" cy="116" rx="300" ry="80" transform="rotate(-12 360 116)" stroke="#aab394" stroke-width="2" opacity=".55"/>
+                <ellipse cx="360" cy="116" rx="226" ry="58" transform="rotate(-12 360 116)" stroke="#e2b2b4" stroke-width="1.5" stroke-dasharray="4 8" opacity=".55"/>
+                <ellipse cx="360" cy="116" rx="118" ry="30" transform="rotate(-12 360 116)" stroke="#b6a7dd" stroke-width="1.5" opacity=".55"/>
+                <path d="M120 125c24-20 44-19 64 0s40 20 64 0 42-20 66 0" stroke="#e2b2b4" stroke-width="1.5"/>
+                <path d="M399 121c20-15 37-14 54 0s34 15 54 0 37-14 54 0" stroke="#b6a7dd" stroke-width="1.5"/>
+              </g>
+              <circle cx="360" cy="116" r="17" fill="#08060c" stroke="#e2b2b4" stroke-width="2"/>
+              <g class="disk-pair" transform="translate(204 118)">
+                <circle cx="-20" cy="0" r="9" fill="#08060c" stroke="#e2b2b4" stroke-width="1.7"/>
+                <circle cx="20" cy="0" r="6" fill="#08060c" stroke="#aab394" stroke-width="1.5"/>
+                <ellipse class="disk-ripple" cx="0" cy="0" rx="34" ry="14" stroke="#e2b2b4" stroke-width="1" fill="none"/>
+              </g>
+              <g class="disk-pair" transform="translate(520 113) rotate(37)">
+                <circle cx="-18" cy="0" r="8" fill="#08060c" stroke="#e2b2b4" stroke-width="1.7"/>
+                <circle cx="18" cy="0" r="5.5" fill="#08060c" stroke="#aab394" stroke-width="1.5"/>
+                <ellipse class="disk-ripple delay" cx="0" cy="0" rx="31" ry="12" stroke="#b6a7dd" stroke-width="1" fill="none"/>
+              </g>
+            </svg>
+            <figcaption class="caption">Schematic: binaries orbit in the disk; the rings represent gravitational waves.</figcaption>
+          </figure>
+          <p><a href="https://github.com/mcfacts/mcfacts">McFACTS on GitHub ↗</a></p>
+        </article>
+      </section>
+
+      <section class="page" id="writing" hidden>
+        <h1 class="page-title">Writing</h1>
+        <p class="page-intro">I want to write about research and other things I’m interested in. Some posts will stand alone; others will be part of a series.</p>
+        <p>No posts yet.</p>
+      </section>
+
+      <section class="page" id="about" hidden>
+        <h1 class="page-title">About</h1>
+        <p class="page-intro">I climb, do yoga, travel when I can, build LEGO sets, and game with friends. Ginger, my dog, has strong opinions about work-life balance.</p>
+        <div class="photo-row">
+          <figure><img src="https://rachelmechum.github.io/assets/climbing.jpg" alt="Rachel rock climbing"><figcaption>Climbing</figcaption></figure>
+          <figure><img src="https://rachelmechum.github.io/assets/ginger.jpg" alt="Ginger, Rachel’s dog"><figcaption>Ginger</figcaption></figure>
+          <figure><img src="https://rachelmechum.github.io/assets/colosseum.jpg" alt="Rachel visiting the Colosseum"><figcaption>Rome</figcaption></figure>
+        </div>
+        <div class="history">
+          <h2>Research and teaching</h2>
+          <div class="history-row"><time>2024 to present</time><div><h3>Graduate research assistant</h3><p>Rochester Institute of Technology. RIFT waveform studies and McFACTS population synthesis.</p></div></div>
+          <div class="history-row"><time>2023 to 2024</time><div><h3>Graduate teaching assistant</h3><p>Galactic Astrophysics and University Astronomy.</p></div></div>
+          <div class="history-row"><time>Summer 2022</time><div><h3>LIGO summer undergraduate research fellow</h3><p>California Institute of Technology.</p></div></div>
+          <div class="history-row"><time>2021 to 2023</time><div><h3>Undergraduate research assistant</h3><p>University of Florida. IllustrisTNG studies of supermassive black holes.</p></div></div>
+        </div>
+      </section>
+
+      <section class="page" id="contact" hidden>
+        <h1 class="page-title">Contact</h1>
+        <p class="contact-line"><a href="mailto:rm9954@rit.edu">rm9954@rit.edu</a></p>
+        <p><a href="https://github.com/rachelmechum">GitHub</a> · <a href="https://www.linkedin.com/in/rachel-mechum-astro/">LinkedIn</a> · <a href="https://ccrg.rit.edu/user/rachel.mechum">RIT profile</a></p>
+      </section>
+    </main>
+
+    <footer><span>Rachel Mechum · Astrophysics</span><span>Rochester, New York</span></footer>
   </div>
 
-  <footer class="sticky-bottom">
-    <div class="container mt-0"><div class="text-center">© 2026 Rachel Mechum · Built with <a href="https://github.com/alshedivat/al-folio">al-folio</a></div></div>
-  </footer>
-  <script src="/preview/assets/js/theme.js"></script>
-  <script src="/preview/assets/js/nav-toggle.js"></script>
+  <script>
+    const pages = ["home", "research", "writing", "about", "contact"];
+    function showPage() {
+      let page = location.hash.slice(1) || "home";
+      if (!pages.includes(page)) page = "home";
+      document.querySelectorAll("main > .page").forEach(section => {
+        section.hidden = section.id !== page;
+      });
+      document.querySelectorAll("[data-nav]").forEach(link => {
+        if (link.dataset.nav === page) link.setAttribute("aria-current", "page");
+        else link.removeAttribute("aria-current");
+      });
+      document.title = page === "home" ? "Rachel Mechum" : `${page[0].toUpperCase()}${page.slice(1)} | Rachel Mechum`;
+      window.scrollTo(0, 0);
+    }
+    window.addEventListener("hashchange", showPage);
+    showPage();
+  </script>
   <script src="assets/js/black-hole-background.js"></script>
 </body>
 </html>
