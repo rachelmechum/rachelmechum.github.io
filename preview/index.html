@@ -403,7 +403,13 @@
   .label h2{font:500 1.35rem/1.1 system-ui,-apple-system,sans-serif;letter-spacing:0}
   .label .spark{display:none}
   .label .rule{background:#9b789080}
-  .intro{grid-template-columns:.9fr 1.1fr;gap:34px;min-height:245px;align-items:center}
+  .intro{grid-template-columns:.9fr 1.1fr;gap:34px;min-height:300px;align-items:center}
+  .intro-copy{max-width:590px}
+  .intro-work{margin:10px 0 0;color:#d7c5d1;font-size:.88rem;line-height:1.55}
+  .home-photos{display:flex;gap:10px;margin-top:14px}
+  .home-photos figure{margin:0}
+  .home-photos img{display:block;width:82px;height:58px;object-fit:cover;border:1px solid #80678090;border-radius:2px}
+  .home-photos figcaption{margin-top:4px;color:#c4aebe;font-size:.64rem}
   .hello,.postit,.scribble,.scribble-text,.doodle{display:none}
   .sky-anchor{height:230px}
   .cards{gap:24px;margin-top:12px}
@@ -451,7 +457,8 @@
   @media (max-width:900px){
     body{padding:14px}
     .site{min-height:calc(100vh - 28px);padding:24px 26px 22px}
-    .intro{gap:20px;min-height:210px}
+    .intro{gap:20px;min-height:260px}
+    .home-photos img{width:72px;height:52px}
     .cards{gap:12px}
     .card{grid-template-columns:minmax(0,1fr) 112px;padding:14px 12px;min-height:132px}
     .card svg{height:96px}
@@ -460,7 +467,8 @@
   @media (max-width:650px){
     body{padding:0}
     .site{min-height:100vh;margin:0;padding:18px 16px;border:0;border-radius:0}
-    .intro{grid-template-columns:1fr 110px;gap:8px;min-height:190px}
+    .intro{grid-template-columns:1fr 110px;gap:8px;min-height:230px}
+    .home-photos img{width:64px;height:48px}
     .cards{grid-template-columns:1fr}
     .card{grid-template-columns:minmax(0,1fr) 140px}
     .post{grid-template-columns:1fr;gap:5px;padding:13px 8px}
@@ -491,17 +499,22 @@
 
   <nav class="tabs" aria-label="Site navigation">
     <button data-page="home" aria-current="page">Home</button>
+    <button data-page="about">About</button>
     <button data-page="research">Research</button>
     <button data-page="writing">Writing</button>
-    <button data-page="about">About</button>
     <button class="cv" data-page="contact">Contact</button>
   </nav>
 
   <!-- ================= HOME ================= -->
   <section class="page" id="home">
     <div class="intro">
-      <div>
-        <p class="lede">I’m a PhD student in astrophysics at RIT. I study how binary black holes form and what we can learn from their gravitational waves.</p>
+      <div class="intro-copy">
+        <p class="lede">Outside work, I like rock climbing, yoga, travel, LEGO, and gaming with friends. Ginger is my dog.</p>
+        <p class="intro-work">I’m a PhD student in astrophysics at RIT. I study binary black holes and their gravitational waves.</p>
+        <div class="home-photos" aria-label="A few things I enjoy">
+          <figure><img src="https://rachelmechum.github.io/assets/climbing.jpg" alt="Rachel rock climbing"><figcaption>climbing</figcaption></figure>
+          <figure><img src="https://rachelmechum.github.io/assets/ginger.jpg" alt="Ginger, Rachel’s dog"><figcaption>Ginger</figcaption></figure>
+        </div>
       </div>
       <div class="sky-anchor" data-anchor aria-hidden="true"></div>
     </div>
@@ -674,7 +687,15 @@
   <!-- ================= ABOUT ================= -->
   <section class="page" id="about" hidden>
     <p class="page-title">About <em>me</em></p>
-    <p class="body-copy">I’m a PhD student at RIT studying binary black holes and gravitational-wave data analysis. Before Rochester, I worked at Caltech with LIGO and at the University of Florida on supermassive black holes in IllustrisTNG.</p>
+    <p class="body-copy">When I’m away from astrophysics, I like rock climbing and yoga. I travel when I can, build LEGO sets, and game with friends. Ginger, my dog, is part of the family.</p>
+
+    <div class="photos">
+      <figure class="photo"><img src="https://rachelmechum.github.io/assets/ginger.jpg" alt="Ginger the dog"><figcaption>Ginger</figcaption></figure>
+      <figure class="photo"><img src="https://rachelmechum.github.io/assets/climbing.jpg" alt="Rachel rock climbing"><figcaption>climbing</figcaption></figure>
+      <figure class="photo"><img src="https://rachelmechum.github.io/assets/kayak.jpg" alt="Kayaking"><figcaption>kayaking</figcaption></figure>
+    </div>
+
+    <div class="label" style="margin-top:28px"><h2>Research and teaching</h2><span class="rule"></span></div>
 
     <div class="cv-card">
       <div class="row">
@@ -695,13 +716,6 @@
       </div>
     </div>
 
-    <div class="photos">
-      <figure class="photo"><img src="https://rachelmechum.github.io/assets/ginger.jpg" alt="Ginger the dog"><figcaption>Ginger</figcaption></figure>
-      <figure class="photo"><img src="https://rachelmechum.github.io/assets/climbing.jpg" alt="Rachel rock climbing"><figcaption>climbing</figcaption></figure>
-      <figure class="photo"><img src="https://rachelmechum.github.io/assets/kayak.jpg" alt="Kayaking"><figcaption>kayaking</figcaption></figure>
-    </div>
-
-    <p class="body-copy" style="margin-top:16px">Otherwise: yoga, LEGO sets, traveling when I can, and games with friends. Ginger has strong opinions about work-life balance.</p>
   </section>
 
   <!-- ================= CONTACT ================= -->
@@ -716,7 +730,7 @@
 
   <footer>
     <span><a href="mailto:rm9954@rit.edu">Email</a> · <a href="https://github.com/rachelmechum">GitHub</a> · <a href="https://rachelmechum.github.io/assets/MechumRachel_CurriculumVitae.pdf">CV</a></span>
-    <span>Rachel Mechum ✦ built by hand</span>
+    <span>Rachel Mechum · Astrophysics</span>
   </footer>
 </main>
 
