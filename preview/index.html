@@ -153,6 +153,10 @@
     .photo-row figure { margin: 0; }
     .photo-row img { display: block; width: 156px; height: 156px; object-fit: cover; border: 1px solid var(--line); }
     .photo-row figcaption { margin-top: 5px; color: var(--soft); font-size: .68rem; }
+    .about-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: clamp(28px, 5vw, 64px); align-items: start; max-width: 940px; }
+    .about-layout .page-intro { margin-bottom: 0; }
+    .about-photo { margin: 0; }
+    .about-photo img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
     .contact-line { font-size: 1.1rem; }
     footer {
       display: flex;
@@ -167,6 +171,8 @@
       .site { width: min(100% - 40px, 720px); }
       .home-grid { grid-template-columns: 1fr; gap: 18px; padding-top: 22px; }
       .hero-art { max-width: 500px; }
+      .about-layout { grid-template-columns: 1fr; }
+      .about-photo { width: min(100%, 360px); }
       .person { grid-template-columns: 120px 1fr; }
       .portrait { width: 120px; height: 150px; }
       nav { gap: 5px; }
@@ -266,42 +272,17 @@
         <article class="project">
           <h2>What is a waveform, and what does RIFT do?</h2>
           <p>I’m studying how the waveform model we use changes the black hole properties we infer from a merger.</p>
-          <p>A gravitational wave waveform is the shape of a signal over time. As two black holes spiral together, the signal speeds up and grows. It rings down after they merge. <a href="https://www.ligo.caltech.edu/page/what-are-gw">LIGO explains gravitational waves here.</a></p>
-          <p>RIFT, or Rapid Iterative FiTting, is software that compares a detector signal with computer generated waveforms. It estimates properties such as each black hole’s mass and spin, or rotation. I use RIFT to study how those estimates change when we use different waveform models. I focus on binaries where the black holes have very different masses.</p>
-          <p><a href="https://github.com/oshaughn/research-projects-RIT">RIFT code on GitHub ↗</a> · <a href="https://arxiv.org/abs/1805.10457">RIFT paper ↗</a></p>
-          <p>The mass ratio is <strong>q = m₂/m₁</strong>, where m₁ is the larger mass.</p>
-          <a class="demo-link" href="/preview/mass-ratio-demo/">Try the q = m₂/m₁ waveform demo ↗</a>
+          <p>A gravitational waveform is a computer model of the signal from a black hole merger. We simulate possible waveforms and compare them with signals detected by LIGO. This helps us estimate the black holes’ properties, such as their masses and spins. <a href="https://www.ligo.caltech.edu/page/what-are-gw">Click here to read how LIGO explains grav waves.</a></p>
+          <p>RIFT, or Rapid Iterative FiTting, is the software I use to compare detected signals with these simulated waveforms. It helps estimate the black holes’ masses and spins. I use it to study how those estimates change with different waveform models, especially for binaries where the black holes have very different masses.</p>
+          <p><a href="https://github.com/oshaughn/research-projects-RIT">RIFT code on GitHub ↗</a></p>
         </article>
 
         <article class="project">
           <h2>Why are AGN disks interesting for black hole detections?</h2>
-          <p>I’m studying how black holes in AGN disks and embedded star clusters form pairs and merge, and how often we might detect those mergers.</p>
-          <p>An active galactic nucleus, or AGN, is a bright galaxy center powered by a supermassive black hole and the gas around it. <a href="https://science.nasa.gov/mission/webb/science-overview/science-explainers/what-are-active-galactic-nuclei/">NASA explains AGNs here.</a> Smaller black holes can become embedded in the disk. Some may form pairs and eventually merge, sending out gravitational waves.</p>
-          <p>I use McFACTS to simulate many possible black hole pairs in AGN disks and embedded star clusters. The models estimate how often they merge and which events detectors might see. Comparing those predictions with observed mergers can help test whether AGN disks are one place black hole pairs form.</p>
-          <figure class="agn-visual">
-            <svg viewBox="0 0 720 230" role="img" aria-label="Schematic of two black hole binaries orbiting in an active galactic nucleus disk and sending out gravitational waves">
-              <g fill="none" stroke-linecap="round">
-                <ellipse cx="360" cy="116" rx="300" ry="80" transform="rotate(-12 360 116)" stroke="#aab394" stroke-width="2" opacity=".55"/>
-                <ellipse cx="360" cy="116" rx="226" ry="58" transform="rotate(-12 360 116)" stroke="#e2b2b4" stroke-width="1.5" stroke-dasharray="4 8" opacity=".55"/>
-                <ellipse cx="360" cy="116" rx="118" ry="30" transform="rotate(-12 360 116)" stroke="#b6a7dd" stroke-width="1.5" opacity=".55"/>
-                <path d="M120 125c24-20 44-19 64 0s40 20 64 0 42-20 66 0" stroke="#e2b2b4" stroke-width="1.5"/>
-                <path d="M399 121c20-15 37-14 54 0s34 15 54 0 37-14 54 0" stroke="#b6a7dd" stroke-width="1.5"/>
-              </g>
-              <circle cx="360" cy="116" r="17" fill="#08060c" stroke="#e2b2b4" stroke-width="2"/>
-              <g class="disk-pair" transform="translate(204 118)">
-                <circle cx="-20" cy="0" r="9" fill="#08060c" stroke="#e2b2b4" stroke-width="1.7"/>
-                <circle cx="20" cy="0" r="6" fill="#08060c" stroke="#aab394" stroke-width="1.5"/>
-                <ellipse class="disk-ripple" cx="0" cy="0" rx="34" ry="14" stroke="#e2b2b4" stroke-width="1" fill="none"/>
-              </g>
-              <g class="disk-pair" transform="translate(520 113) rotate(37)">
-                <circle cx="-18" cy="0" r="8" fill="#08060c" stroke="#e2b2b4" stroke-width="1.7"/>
-                <circle cx="18" cy="0" r="5.5" fill="#08060c" stroke="#aab394" stroke-width="1.5"/>
-                <ellipse class="disk-ripple delay" cx="0" cy="0" rx="31" ry="12" stroke="#b6a7dd" stroke-width="1" fill="none"/>
-              </g>
-            </svg>
-          <figcaption class="caption">Schematic: binaries orbit in the disk; the rings represent gravitational waves.</figcaption>
-          </figure>
-          <p><a href="https://github.com/McFACTS/McFACTS">McFACTS on GitHub ↗</a> · <a href="https://arxiv.org/abs/2410.16515">Core paper ↗</a></p>
+          <p>I’m studying whether black holes in AGN disks and embedded star clusters can form pairs that merge, and how often we might detect those mergers.</p>
+          <p>An <a href="https://science.nasa.gov/mission/webb/science-overview/science-explainers/what-are-active-galactic-nuclei/">active galactic nucleus, or AGN</a>, is a bright galaxy center powered by a supermassive black hole and the gas around it. Smaller black holes can become embedded in the disk. Some may form pairs and eventually merge, sending out gravitational waves.</p>
+          <p>I use McFACTS to simulate many possible black hole pairs in these environments. The results help predict which mergers detectors might see. Comparing those predictions with observed mergers can help test whether AGN disks are one place black hole pairs form.</p>
+          <p><a href="https://github.com/McFACTS/McFACTS">McFACTS on GitHub ↗</a></p>
         </article>
       </section>
 
@@ -313,7 +294,10 @@
 
       <section class="page" id="about" hidden>
         <h1 class="page-title">About</h1>
-        <p class="page-intro">I’m a PhD student in astrophysics at RIT. Outside of work, I like yoga and traveling when I can. I’ve put the rest under <a href="#hobbies">Hobbies</a>. Ginger, my dog, has strong opinions about work-life balance.</p>
+        <div class="about-layout">
+          <p class="page-intro">I’m a PhD student in astrophysics at RIT. Outside of work, I like yoga and traveling when I can. I’ve put the rest under <a href="#hobbies">Hobbies</a>. Ginger, my dog, has strong opinions about work-life balance.</p>
+          <figure class="about-photo"><img src="assets/ginger-office.jpg" alt="Ginger sleeping under Rachel’s keyboard"></figure>
+        </div>
       </section>
 
       <section class="page" id="hobbies" hidden>
