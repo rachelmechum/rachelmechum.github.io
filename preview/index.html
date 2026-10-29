@@ -155,6 +155,8 @@
     .photo-row figcaption { margin-top: 5px; color: var(--soft); font-size: .68rem; }
     .about-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: clamp(28px, 5vw, 64px); align-items: start; max-width: 940px; }
     .about-layout .page-intro { margin-bottom: 0; }
+    .about-copy p { margin: 0 0 13px; }
+    .about-copy p:last-child { margin-bottom: 0; }
     .about-photo { margin: 0; }
     .about-photo img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
     .contact-line { font-size: 1.1rem; }
@@ -295,15 +297,17 @@
       <section class="page" id="about" hidden>
         <h1 class="page-title">About</h1>
         <div class="about-layout">
-          <p class="page-intro">I’m a PhD student in astrophysics at RIT. Outside of work, I like yoga and traveling when I can. I’ve put the rest under <a href="#hobbies">Hobbies</a>. Ginger, my dog, has strong opinions about work-life balance.</p>
+          <div class="about-copy">
+            <p>I’m an astrophysics PhD student at RIT. I started out thinking I’d go into aerospace or mechanical engineering, until I realized I wanted to work with the data from space missions rather than build the hardware. That path also got me comfortable with code and tech, which is partly why this website exists (it was fun to make!).</p>
+            <p>My dog, Ginger, has been with me since high school. She’s seen me through community college, university, my master’s, and now the home stretch of my PhD. After being my emotional support through all of it, she’s basically a pup with a PhD too.</p>
+            <p>Outside of work, I climb, do yoga, and travel when I can. I keep my other interests and current projects under the <a href="#hobbies">Hobbies</a> tab.</p>
+          </div>
           <figure class="about-photo"><img src="assets/ginger-office.jpg" alt="Ginger sleeping under Rachel’s keyboard"></figure>
         </div>
       </section>
 
       <section class="page" id="hobbies" hidden>
         <h1 class="page-title">Hobbies</h1>
-        <p class="page-intro">I climb, do yoga, travel when I can, build LEGO sets, and game with friends. Ginger, my dog, has strong opinions about work-life balance.</p>
-        <p><a href="https://www.instagram.com/filmofrachel/">Film photography: @filmofrachel ↗</a></p>
         <div class="photo-row">
           <figure><img src="https://rachelmechum.github.io/assets/climbing.jpg" alt="Rachel rock climbing"><figcaption>Climbing</figcaption></figure>
           <figure><img src="https://rachelmechum.github.io/assets/ginger.jpg" alt="Ginger, Rachel’s dog"><figcaption>Ginger</figcaption></figure>
@@ -311,9 +315,13 @@
           <figure><img src="https://rachelmechum.github.io/assets/colosseum.jpg" alt="Rachel visiting the Colosseum"><figcaption>Rome</figcaption></figure>
         </div>
         <article class="project">
-          <h2>Updates</h2>
-          <p>I’ll post photos and notes from trips, climbing, LEGO builds, and games here.</p>
-          <p>No hobby updates yet.</p>
+          <h2>Film photography</h2>
+          <p>I love shooting on film because having a limited number of frames makes you slow down and choose your shots. Other times, I just use it to catch ordinary, candid moments. Film has a character that reminds me of flipping through my parents’ and grandparents’ photo albums as a kid. You can really feel what it was like to be there.</p>
+          <p>I share some of my photos at <a href="https://www.instagram.com/filmofrachel/">@filmofrachel ↗</a></p>
+        </article>
+        <article class="project">
+          <h2>What I’m into lately</h2>
+          <p>Lately I’ve been watching the Marvel movies for the first time (Andrew Garfield’s Spider-Man is my favorite so far) and slowly working my way through a 1,000-piece puzzle that’s going to take me forever. My neighbor also gifted me a KitchenAid stand mixer, so I’ve been having a lot of fun baking cookies, breads, and brownies, alongside getting more into making matcha, tea, and coffee at home. Next on the wishlist is pottery, once I’m no longer on a grad student budget.</p>
         </article>
       </section>
 
