@@ -263,6 +263,115 @@
     .ticket{display:none}
     .tabs .cv{display:none}
   }
+
+  /* Desktop is the primary layout; the narrow rules above are fallbacks. */
+  html,body{min-height:100%;background:#261b26}
+  body{padding:30px 32px}
+  .site{
+    width:100%;max-width:1280px;min-height:calc(100vh - 60px);
+    margin:0 auto;padding:30px 42px 26px;border:1px solid #9b789052;
+    border-radius:12px;box-shadow:0 18px 60px #120d1580;
+  }
+  .identity{gap:16px}
+  .frame{padding:5px 5px 17px}
+  .frame img{width:58px;height:64px}
+  .name{font-size:2.1rem}
+  .sub{font-size:.78rem;margin-top:7px}
+  .tools{gap:12px}
+  .pause{font-size:.9rem;padding:10px 15px}
+  .ticket{font-size:.9rem;padding:11px 14px}
+  .tabs{margin-top:27px;gap:6px}
+  .tabs button{font-size:1rem;padding:13px 19px 14px}
+  .page{padding-top:32px}
+  .tiny{font-size:.78rem}
+  .lede{font-size:1.22rem;line-height:1.7;max-width:590px}
+  .page-title{font-size:2.45rem;margin-bottom:16px}
+  .body-copy{font-size:1.05rem;line-height:1.75;max-width:760px;margin-bottom:20px}
+  .label{gap:12px;margin-bottom:16px}
+  .label h2{font-size:1.55rem}
+  .intro{grid-template-columns:1fr 1fr;gap:42px;min-height:250px}
+  .hello{font-size:1.22rem;margin-bottom:9px}
+  .postit{max-width:450px;margin-top:22px;padding:14px 18px;font-size:1rem}
+  .sky-anchor{height:230px}
+  .scribble{width:112px;height:40px}
+  .scribble-text{font-size:.95rem;bottom:-17px}
+  .doodle{height:22px;margin:20px 0 5px}
+  .cards{gap:22px;margin-top:22px}
+  .card svg{height:150px}
+  .card-body{padding:16px 19px 18px}
+  .card-body h3{font-size:1.08rem;margin-bottom:7px}
+  .card-body p{font-size:.92rem;line-height:1.55}
+  .tape{width:70px;height:17px;top:-10px}
+  .writes{gap:14px;margin-top:6px}
+  .post{padding:16px 20px 17px;gap:4px}
+  .post .kicker{font-size:.72rem}
+  .post h3{font-size:1.04rem}
+  .post p{font-size:.9rem;line-height:1.5;margin-top:4px}
+  .sample{font-size:.68rem;top:12px;right:14px}
+  .more{font-size:.9rem;margin-top:14px}
+  .strip{gap:10px;margin-top:24px}
+  .strip .tag{font-size:.8rem;padding:8px 12px}
+  .strip .lead{font-size:.72rem}
+  .demo{padding:20px 22px 18px;margin-top:10px}
+  .demo-head{margin-bottom:12px}
+  .demo-head h3{font-size:1rem}
+  .demo svg{height:320px}
+  .demo-body{gap:28px}
+  .readout{font-size:.95rem;margin-top:10px}
+  .qval{font-size:1.1rem}
+  .demo input[type=range]{margin:13px 0 7px}
+  .demo .caption{font-size:.88rem;line-height:1.6}
+  .legend{font-size:.82rem;gap:16px;margin-top:12px}
+  .dot{width:10px;height:10px}
+  .scale{margin-top:13px}
+  .scale button{font-size:.8rem;padding:7px 12px}
+  .fine{font-size:.84rem;line-height:1.7;max-width:900px;margin-top:16px}
+  .disk{padding:12px 12px 6px;margin-top:10px}
+  .disk canvas{height:410px}
+  .disk-foot{font-size:.78rem;padding:6px 10px 10px}
+  .tools-list{gap:10px;margin-top:16px}
+  .tool{font-size:.8rem;padding:8px 12px}
+  .filters{gap:9px;margin-bottom:20px}
+  .filter{font-size:.86rem;padding:8px 14px}
+  .empty{font-size:.95rem}
+  .photos{gap:18px;margin-top:22px}
+  .photo{padding:8px 8px 22px}
+  .photo img{width:150px;height:164px}
+  .photo figcaption{font-size:.82rem;margin-top:8px}
+  .cv-card{max-width:850px;padding:19px 22px 21px;margin-top:12px}
+  .row{grid-template-columns:130px 1fr;gap:18px;padding:13px 0}
+  .row .when{font-size:.76rem}
+  .row h3{font-size:.98rem}
+  .row p{font-size:.88rem;line-height:1.55;margin-top:4px}
+  footer{font-size:.82rem;margin-top:30px;padding-top:17px}
+
+  @media (max-width:900px){
+    body{padding:14px}
+    .site{min-height:calc(100vh - 28px);padding:24px 26px 22px}
+    .name{font-size:1.75rem}
+    .sub{font-size:.68rem}
+    .tabs button{font-size:.88rem;padding:11px 14px 12px}
+    .intro{gap:20px;min-height:215px}
+    .lede{font-size:1.05rem}
+    .postit{font-size:.9rem}
+    .sky-anchor{height:200px}
+    .card svg{height:125px}
+    .demo svg{height:280px}
+    .disk canvas{height:340px}
+  }
+  @media (max-width:650px){
+    body{padding:0}
+    .site{min-height:100vh;margin:0;border:0;border-radius:0;box-shadow:none}
+    .intro{grid-template-columns:1fr 130px;gap:12px;min-height:190px}
+    .cards{grid-template-columns:1fr}
+    .card svg{height:110px}
+    .demo-body{grid-template-columns:1fr}
+    .demo svg{height:230px}
+  }
+  @media (max-width:470px){
+    body{padding:0}
+    .site{min-height:100vh;margin:0;border:0;border-radius:0;box-shadow:none}
+  }
 </style>
 </head>
 <body>
@@ -653,7 +762,7 @@ function drawSky() {
         ctx.strokeStyle = j % 2 ? '#aab394' : '#e4b2ac';
         ctx.lineWidth = 1.4;
         ctx.beginPath();
-        ctx.ellipse(0, 0, (28 + age * 40) * sc, (20 + age * 29) * sc, 0, 0, 6.283);
+        ctx.ellipse(0, 0, (20 + age * 27) * sc, (14 + age * 19) * sc, 0, 0, 6.283);
         ctx.stroke();
         ctx.restore();
       }
@@ -915,7 +1024,7 @@ function size() {
     const b = anchor.getBoundingClientRect();
     cx = b.left - box.left + b.width * .5;
     cy = b.top - box.top + b.height * .5;
-    sc = Math.min(1.15, b.width / 180, b.height / 150);
+    sc = Math.min(1.05, b.width / 220, b.height / 180);
     showPair = true;
   } else {
     cx = w * .5; cy = Math.min(h * .45, 340); sc = .52;
