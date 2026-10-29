@@ -153,12 +153,6 @@
     .photo-row figure { margin: 0; }
     .photo-row img { display: block; width: 156px; height: 156px; object-fit: cover; border: 1px solid var(--line); }
     .photo-row figcaption { margin-top: 5px; color: var(--soft); font-size: .68rem; }
-    .history { max-width: 850px; }
-    .history h2 { margin: 27px 0 13px; font: 600 1rem/1.4 var(--mono); }
-    .history-row { display: grid; grid-template-columns: 145px 1fr; gap: 18px; padding: 13px 0; border-top: 1px solid var(--line); }
-    .history-row time { color: var(--sage); font-size: .72rem; }
-    .history-row h3 { margin: 0 0 4px; font: 600 .88rem/1.4 var(--mono); }
-    .history-row p { margin: 0; color: var(--soft); font-size: .82rem; }
     .contact-line { font-size: 1.1rem; }
     footer {
       display: flex;
@@ -186,7 +180,6 @@
       .portrait { width: 94px; height: 122px; }
       .role { font-size: .73rem; }
       .page { padding-top: 29px; }
-      .history-row { grid-template-columns: 1fr; gap: 3px; }
       footer { flex-direction: column; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -314,19 +307,13 @@
 
       <section class="page" id="about" hidden>
         <h1 class="page-title">About</h1>
-        <p class="page-intro">I’m a PhD student in astrophysics at RIT. I work on waveform systematics and binary black hole formation in AGN disks.</p>
-        <div class="history">
-          <h2>Research and teaching</h2>
-          <div class="history-row"><time>2024 to present</time><div><h3>Graduate research assistant</h3><p>Rochester Institute of Technology. RIFT waveform studies and McFACTS population synthesis.</p></div></div>
-          <div class="history-row"><time>2023 to 2024</time><div><h3>Graduate teaching assistant</h3><p>Galactic Astrophysics and University Astronomy.</p></div></div>
-          <div class="history-row"><time>Summer 2022</time><div><h3>LIGO summer undergraduate research fellow</h3><p>California Institute of Technology.</p></div></div>
-          <div class="history-row"><time>2021 to 2023</time><div><h3>Undergraduate research assistant</h3><p>University of Florida. IllustrisTNG studies of supermassive black holes.</p></div></div>
-        </div>
+        <p class="page-intro">I’m a PhD student in astrophysics at RIT. Outside of work, I like yoga and traveling when I can. I’ve put the rest under <a href="#hobbies">Hobbies</a>. Ginger, my dog, has strong opinions about work-life balance.</p>
       </section>
 
       <section class="page" id="hobbies" hidden>
         <h1 class="page-title">Hobbies</h1>
         <p class="page-intro">I climb, do yoga, travel when I can, build LEGO sets, and game with friends. Ginger, my dog, has strong opinions about work-life balance.</p>
+        <p><a href="https://www.instagram.com/filmofrachel/">Film photography: @filmofrachel ↗</a></p>
         <div class="photo-row">
           <figure><img src="https://rachelmechum.github.io/assets/climbing.jpg" alt="Rachel rock climbing"><figcaption>Climbing</figcaption></figure>
           <figure><img src="https://rachelmechum.github.io/assets/ginger.jpg" alt="Ginger, Rachel’s dog"><figcaption>Ginger</figcaption></figure>
