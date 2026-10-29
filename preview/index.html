@@ -408,7 +408,7 @@
       <div>
         <p class="hello">hi, I’m Rachel ✦</p>
         <p class="lede">I’m a PhD student in astrophysics at RIT. I study binary black holes: how they form, and what their gravitational waves tell us.</p>
-        <div class="postit"><b>right now —</b> running parameter estimation on high-mass-ratio binaries, and building AGN-disk population models.</div>
+        <div class="postit"><b>currently:</b> running parameter estimation on high-mass-ratio binaries, and building AGN-disk population models.</div>
       </div>
       <div class="sky-anchor" data-anchor>
         <svg class="scribble" viewBox="0 0 130 46" aria-hidden="true">
@@ -1027,8 +1027,8 @@ function size() {
     sc = Math.min(1.05, b.width / 220, b.height / 180);
     showPair = true;
   } else {
-    cx = w * .5; cy = Math.min(h * .45, 340); sc = .52;
-    showPair = false;
+    cx = w * .78; cy = Math.min(h * .35, 390); sc = Math.min(.85, w / 520);
+    showPair = true;
   }
   drawSky();
   drawBinary();
