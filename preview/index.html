@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rachel Mechum — astrophysics</title>
+<style>
+  :root{
+    --plum:#352332;
+    --plum-2:#4b3444;
+    --plum-3:#5f4155;
+    --cream:#f1ddc7;
+    --ink:#3a2231;
+    --ink-soft:#6b4d5f;
+    --paper:#f7ead9;
+    --blush:#e4b2ac;
+    --rose:#d6a087;
+    --sage:#aab394;
+    --text:#faecd9;
+    --hand:'Bradley Hand','Chalkboard SE','Segoe Print','Comic Sans MS',cursive;
+  }
+  html,body{margin:0}
+  *{box-sizing:border-box}
+  .site{
+    position:relative;isolation:isolate;overflow:hidden;
+    background:var(--plum);color:var(--text);
+    border-radius:10px;padding:20px 22px 18px;
+    font-family:Manrope,system-ui,-apple-system,sans-serif;
+  }
+  .site *{color:inherit}
+  .sky{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+
+  .mast{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+  .identity{display:flex;gap:11px;align-items:center}
+  .frame{
+    position:relative;padding:4px 4px 14px;background:var(--cream);
+    transform:rotate(-4deg);border-radius:2px;box-shadow:3px 4px 0 #1e1420a8;
+  }
+  .frame img{display:block;width:42px;height:46px;object-fit:cover}
+  .frame::before{
+    content:'';position:absolute;top:-7px;left:50%;translate:-50% 0;
+    width:26px;height:12px;background:#aab394c4;transform:rotate(-6deg);
+  }
+  .name{font:500 1.55rem/1 Georgia,serif;letter-spacing:-.035em}
+  .sub{font:.6rem/1.6 ui-monospace,SFMono-Regular,monospace;letter-spacing:.09em;
+       text-transform:uppercase;color:#cfb5c6!important;margin-top:3px}
+  .tools{display:flex;align-items:center;gap:7px;flex-shrink:0}
+  .pause{font:.68rem system-ui;border:1px solid #b08a9e;background:#4b3444;
+         color:var(--text);border-radius:20px;padding:7px 10px;cursor:pointer}
+  .pause:hover{background:var(--plum-3)}
+  .ticket{
+    display:inline-flex;gap:5px;align-items:center;text-decoration:none;
+    background:var(--rose);color:#352332;font:.68rem/1 system-ui;font-weight:700;
+    padding:8px 10px;border-radius:3px;transform:rotate(2deg);
+    box-shadow:2px 2px 0 #1e14208c;
+  }
+
+  .tabs{
+    display:flex;gap:4px;align-items:flex-end;flex-wrap:wrap;
+    border-bottom:2px solid var(--rose);margin-top:20px;
+  }
+  .tabs button{
+    font:650 .75rem system-ui;border:0;cursor:pointer;
+    background:#523a4b;color:#e7cfdd;
+    padding:9px 12px 10px;border-radius:7px 7px 0 0;
+    transition:background .16s,color .16s,transform .16s;
+  }
+  .tabs button:hover{background:#63465a}
+  .tabs button[aria-current=page]{
+    background:var(--cream);color:var(--ink);font-weight:750;
+    transform:translateY(1px) rotate(-.7deg);
+  }
+  .tabs .cv{margin-left:auto;background:none;color:var(--blush);padding:9px 2px 10px}
+  .tabs .cv:hover{background:none;color:#f6d3cd;text-decoration:underline}
+  .tabs button:focus-visible,.card:focus-visible,.filter:focus-visible,.post:focus-visible{
+    outline:2px solid var(--blush);outline-offset:3px;
+  }
+
+  .page[hidden]{display:none}
+  .page{padding-top:22px}
+  .tiny{font:.62rem/1.5 ui-monospace,monospace;letter-spacing:.05em;color:#c8adbf!important}
+  .lede{font-size:.92rem;line-height:1.75;margin:0;max-width:340px}
+  .page-title{font:500 1.75rem/1.1 Georgia,serif;letter-spacing:-.03em;margin:0 0 10px}
+  .page-title em{font-style:italic;color:var(--blush)}
+  .body-copy{font-size:.85rem;line-height:1.75;margin:0 0 14px;max-width:430px;color:#eedaea!important}
+  .body-copy a{color:#edbcb7}
+  .doodle{display:block;width:100%;height:16px;margin:16px 0 2px;opacity:.85}
+  .label{display:flex;align-items:center;gap:9px;margin:0 0 12px}
+  .label h2{font:500 1.2rem/1 Georgia,serif;margin:0;letter-spacing:-.02em}
+  .label .rule{flex:1;height:1px;background:#b58ca380}
+  .spark{color:var(--blush)}
+
+  .intro{display:grid;grid-template-columns:1.15fr .85fr;gap:10px;align-items:center}
+  .hello{font:400 1rem/1.5 var(--hand);color:#f0c9c4!important;margin:0 0 6px}
+  .postit{
+    position:relative;margin:14px 0 0;padding:9px 12px;max-width:300px;
+    background:#eec3c6;color:#4a2a35;font:.82rem/1.55 var(--hand);
+    transform:rotate(-1.6deg);border-radius:2px;
+    box-shadow:3px 4px 0 #1e14207a;
+  }
+  .postit b{font-weight:700}
+  .postit::after{
+    content:'';position:absolute;top:-7px;right:18px;width:30px;height:13px;
+    background:#aab394cc;transform:rotate(5deg);
+  }
+  .sky-anchor{height:168px;position:relative}
+  .scribble{position:absolute;left:0;bottom:2px;width:86px;height:30px;opacity:.9;pointer-events:none}
+  .scribble-text{
+    position:absolute;left:2px;bottom:-14px;
+    font:.78rem/1 var(--hand);color:#efc9c3;transform:rotate(-3deg);
+    pointer-events:none;white-space:nowrap;
+  }
+
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+  .card{
+    position:relative;display:block;text-align:left;padding:0;border:0;
+    background:var(--paper);color:var(--ink);border-radius:3px;cursor:pointer;
+    font:inherit;box-shadow:4px 5px 0 #1d131f8f;
+    transition:transform .18s,box-shadow .18s;
+  }
+  .card:nth-child(2){transform:rotate(1.1deg)}
+  .card:hover{transform:translateY(-3px) rotate(-1deg);box-shadow:5px 8px 0 #1d131f8f}
+  .card svg{display:block;width:100%;height:104px;background:#2c1e2c}
+  .card-body{padding:11px 13px 13px}
+  .card-body h3{font:650 .86rem/1.3 system-ui;margin:0 0 5px;color:var(--ink)}
+  .card-body p{font-size:.72rem;line-height:1.5;margin:0;color:var(--ink-soft)}
+  .tape{
+    position:absolute;top:-8px;left:50%;translate:-50% 0;width:56px;height:14px;
+    background:#aab394cc;transform:rotate(-3deg);
+  }
+
+  .writes{display:grid;gap:11px;margin-top:4px}
+  .post{
+    position:relative;display:grid;gap:2px;text-align:left;
+    background:var(--paper);color:var(--ink);border:0;border-radius:2px;
+    padding:11px 14px 12px;cursor:pointer;font:inherit;
+    box-shadow:3px 4px 0 #1d131f80;
+  }
+  .post:nth-child(odd){transform:rotate(-.5deg)}
+  .post:nth-child(even){transform:rotate(.6deg)}
+  .post:hover{box-shadow:4px 6px 0 #1d131f80}
+  .post .kicker{
+    font:.58rem/1.4 ui-monospace,monospace;letter-spacing:.09em;text-transform:uppercase;
+    color:#8a6577;
+  }
+  .post h3{font:650 .84rem/1.35 system-ui;margin:2px 0 0;color:var(--ink)}
+  .post p{font-size:.7rem;line-height:1.5;margin:3px 0 0;color:var(--ink-soft)}
+  .sample{
+    position:absolute;top:8px;right:9px;font:.55rem ui-monospace,monospace;
+    letter-spacing:.08em;text-transform:uppercase;color:#9c7c8a;
+  }
+  .more{display:inline-flex;align-items:center;gap:6px;margin-top:12px;
+        color:#edbcb7!important;font:650 .75rem system-ui;background:none;border:0;
+        padding:4px 0;cursor:pointer}
+  .more:hover{text-decoration:underline}
+
+  .strip{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px;align-items:center}
+  .strip .tag{
+    font:.66rem/1 system-ui;padding:6px 9px;border-radius:20px;
+    background:#5b4053;color:#f0dae6;border:1px solid #a17e93a8;
+  }
+  .strip .tag:nth-child(2n){transform:rotate(-1.5deg)}
+  .strip .tag:nth-child(3n){transform:rotate(1.8deg);background:#6b4a52}
+  .strip .lead{font:.6rem ui-monospace,monospace;letter-spacing:.1em;
+               text-transform:uppercase;color:#c1a3b5!important}
+
+  .demo{
+    margin-top:6px;background:#2c1e2c;border:1px solid #8f6f82a8;border-radius:6px;
+    padding:14px 15px 12px;
+  }
+  .demo-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px}
+  .demo-head h3{font:650 .8rem system-ui;margin:0}
+  .demo svg{display:block;width:100%;height:250px}
+  .demo-body{display:grid;gap:12px}
+  @media (min-width:620px){
+    .demo-body{grid-template-columns:1.45fr .95fr;gap:20px;align-items:center}
+  }
+  .readout{display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+           font-size:.76rem;margin-top:6px}
+  .qval{font:700 .92rem ui-monospace,monospace;color:var(--blush)!important}
+  .demo input[type=range]{width:100%;accent-color:var(--rose);margin:9px 0 4px}
+  .demo .caption{font:.69rem/1.55 var(--hand);color:#e7c3bd!important;margin:4px 0 0}
+  #hcap{display:block;margin-top:12px;color:#f0c9c4!important}
+  .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:.67rem;color:#dcc4d3!important;margin-top:8px}
+  .scale{display:flex;gap:6px;margin-top:9px}
+  .scale button{
+    font:.63rem system-ui;border:1px solid #a88196;background:#513748;color:#eed9e4;
+    border-radius:14px;padding:4px 9px;cursor:pointer;
+  }
+  .scale button[aria-pressed=true]{background:#6b4a52;border-color:var(--blush);color:#fff3ec}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--rose)}
+  .fine{font-size:.71rem;line-height:1.65;color:#cdb2c4!important;margin:12px 0 0;max-width:470px}
+
+  .disk{
+    margin-top:6px;background:#2c1e2c;border:1px solid #8f6f82a8;border-radius:6px;
+    padding:8px 8px 4px;
+  }
+  .disk canvas{display:block;width:100%;height:280px}
+  .disk-foot{
+    display:flex;justify-content:space-between;gap:10px;padding:4px 8px 8px;
+    font:.66rem/1.5 ui-monospace,monospace;color:#c9aabb!important;
+  }
+  .tools-list{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0}
+  .tool{
+    font:.66rem/1 system-ui;padding:6px 9px;border-radius:20px;
+    background:#5b4053;border:1px solid #a17e93a8;color:#f0dae6;
+  }
+
+  .filters{display:flex;gap:7px;margin:0 0 14px;flex-wrap:wrap}
+  .filter{
+    font:.71rem system-ui;border:1px solid #a88196;background:#513748;
+    border-radius:18px;padding:6px 11px;cursor:pointer;color:#f0dae6;
+  }
+  .filter[aria-pressed=true]{background:var(--rose);color:#352332;border-color:var(--rose);font-weight:700}
+  .empty{font:.78rem/1.6 var(--hand);color:#e2c1cb!important;margin:6px 0 0}
+
+  .photos{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+  .photo{
+    background:var(--cream);padding:6px 6px 20px;border-radius:2px;
+    box-shadow:3px 4px 0 #1d131f8f;
+  }
+  .photo img{display:block;width:112px;height:124px;object-fit:cover}
+  .photo:nth-child(1){transform:rotate(-3deg)}
+  .photo:nth-child(2){transform:rotate(2.4deg)}
+  .photo:nth-child(3){transform:rotate(-1.4deg)}
+  .photo figcaption{font:.66rem/1 var(--hand);color:#5b3a4a;margin-top:6px;text-align:center}
+
+  .cv-card{
+    position:relative;background:var(--paper);color:var(--ink);
+    border-radius:3px;padding:13px 15px 15px;margin-top:8px;
+    box-shadow:4px 5px 0 #1d131f8f;max-width:470px;
+  }
+  .row{display:grid;grid-template-columns:96px 1fr;gap:10px;padding:9px 0;
+       border-top:1px dashed #c9a99f}
+  .row:first-child{border-top:0;padding-top:2px}
+  .row .when{font:.6rem/1.5 ui-monospace,monospace;color:#8a6577;letter-spacing:.03em}
+  .row h3{font:650 .78rem/1.35 system-ui;margin:0;color:var(--ink)}
+  .row p{font-size:.7rem;line-height:1.5;margin:2px 0 0;color:var(--ink-soft)}
+
+  footer{
+    display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
+    font-size:.67rem;color:#d8bfd0!important;margin-top:22px;padding-top:13px;
+    border-top:1px solid #a8819657;
+  }
+  footer a{color:inherit;text-decoration:none}
+  footer a:hover{color:var(--blush)}
+
+  @media (max-width:470px){
+    .site{padding:16px 15px 14px}
+    .name{font-size:1.32rem}
+    .intro{grid-template-columns:1fr 92px;gap:4px}
+    .sky-anchor{height:142px}
+    .scribble,.scribble-text{display:none}
+    .lede{font-size:.84rem;line-height:1.65}
+    .cards{grid-template-columns:1fr;gap:12px}
+    .card svg{height:88px}
+    .tabs button{padding:8px 9px 9px;font-size:.7rem}
+    .page-title{font-size:1.5rem}
+    .demo svg{height:200px}
+    .disk canvas{height:200px}
+    .photo img{width:92px;height:100px}
+    .row{grid-template-columns:78px 1fr}
+    .ticket{display:none}
+    .tabs .cv{display:none}
+  }
+</style>
+</head>
+<body>
+<main class="site" id="site">
+  <canvas class="sky" id="sky" aria-hidden="true"></canvas>
+
+  <header class="mast">
+    <div class="identity">
+      <div class="frame">
+        <img src="https://rachelmechum.github.io/assets/rachel-mechum.jpg" alt="Rachel Mechum">
+      </div>
+      <div>
+        <div class="name">Rachel Mechum</div>
+        <div class="sub">Astrophysics · Rochester, NY</div>
+      </div>
+    </div>
+    <div class="tools">
+      <button class="pause" id="pause" aria-pressed="true">Pause motion</button>
+      <a class="ticket" href="https://rachelmechum.github.io/assets/MechumRachel_CurriculumVitae.pdf">CV ↗</a>
+    </div>
+  </header>
+
+  <nav class="tabs" aria-label="Site navigation">
+    <button data-page="home" aria-current="page">Home</button>
+    <button data-page="research">Research</button>
+    <button data-page="writing">Writing</button>
+    <button data-page="about">About</button>
+    <button class="cv" data-page="contact">Contact</button>
+  </nav>
+
+  <!-- ================= HOME ================= -->
+  <section class="page" id="home">
+    <div class="intro">
+      <div>
+        <p class="hello">hi, I’m Rachel ✦</p>
+        <p class="lede">I’m a PhD student in astrophysics at RIT. I study binary black holes: how they form, and what their gravitational waves tell us.</p>
+        <div class="postit"><b>right now —</b> running parameter estimation on high-mass-ratio binaries, and building AGN-disk population models.</div>
+      </div>
+      <div class="sky-anchor" data-anchor>
+        <svg class="scribble" viewBox="0 0 130 46" aria-hidden="true">
+          <path d="M8 40C26 22 52 14 78 18" fill="none" stroke="#efc9c3" stroke-opacity=".75" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M70 13l10 5-9 6" fill="none" stroke="#efc9c3" stroke-opacity=".75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="scribble-text">my entire job, roughly</span>
+      </div>
+    </div>
+
+    <svg class="doodle" viewBox="0 0 300 16" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M2 10c18-7 36 3 54 2s33-9 51-7 34 10 52 7 33-9 51-6 32 8 48 4" fill="none" stroke="#d6a087" stroke-opacity=".55" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+
+    <div class="label"><h2>Research</h2><span class="spark">✧</span><span class="rule"></span><span class="tiny">two projects</span></div>
+
+    <div class="cards">
+      <button class="card" data-go="research">
+        <span class="tape"></span>
+        <svg viewBox="0 0 250 104" aria-label="Two unequal masses orbiting their shared center"><g transform="translate(125 52) rotate(-18)">
+          <ellipse rx="62" ry="23" fill="none" stroke="#d6a087" stroke-opacity=".4"/>
+          <ellipse rx="24" ry="9" fill="none" stroke="#aab394" stroke-opacity=".55"/>
+          <circle cx="-24" cy="0" r="12" fill="#09070b" stroke="#dfba83"/>
+          <circle cx="62" cy="0" r="7.5" fill="#09070b" stroke="#aab394"/>
+          <path d="M-4 0h8M0-4v8" stroke="#faecd9" stroke-opacity=".8"/>
+        </g></svg>
+        <div class="card-body">
+          <h3>Waveform systematics</h3>
+          <p>How the choice of waveform model shifts the masses and spins we measure.</p>
+        </div>
+      </button>
+
+      <button class="card" data-go="agn">
+        <span class="tape"></span>
+        <svg viewBox="0 0 250 104" aria-label="Black holes embedded in a tilted accretion disk"><g transform="translate(125 52) rotate(-16)">
+          <ellipse rx="96" ry="27" fill="#aab394" fill-opacity=".07" stroke="#aab394" stroke-opacity=".3"/>
+          <ellipse rx="68" ry="19" fill="none" stroke="#aab394" stroke-opacity=".28"/>
+          <ellipse rx="38" ry="11" fill="none" stroke="#aab394" stroke-opacity=".22"/>
+          <circle r="11" fill="#09070b" stroke="#dfba83"/>
+          <g fill="#e4b2ac"><circle cx="-58" cy="8" r="3"/><circle cx="46" cy="-11" r="3"/><circle cx="66" cy="12" r="2.6"/></g>
+          <g fill="#aab394"><circle cx="-30" cy="-15" r="2"/><circle cx="80" cy="-4" r="2"/></g>
+        </g></svg>
+        <div class="card-body">
+          <h3>Black holes in AGN disks</h3>
+          <p>How gas disks and dense star clusters make binaries, and whether we can detect them.</p>
+        </div>
+      </button>
+    </div>
+
+    <div class="label" style="margin-top:22px"><h2>Writing</h2><span class="spark">✧</span><span class="rule"></span><span class="tiny">series &amp; one-offs</span></div>
+
+    <div class="writes">
+      <button class="post" data-go="writing">
+        <span class="sample">sample</span>
+        <span class="kicker">Series · part 1 of 3</span>
+        <h3>Following one merger, from strain to spin</h3>
+        <p>Start with the trace everyone has seen, then take the noise apart.</p>
+      </button>
+      <button class="post" data-go="writing">
+        <span class="sample">sample</span>
+        <span class="kicker">One-off</span>
+        <h3>What a mass ratio actually changes</h3>
+        <p>Why the lighter black hole swings wide, and why that matters for a fit.</p>
+      </button>
+    </div>
+
+    <button class="more" data-go="writing">All writing →</button>
+
+    <div class="strip">
+      <span class="lead">away from the desk</span>
+      <span class="tag">rock climbing</span>
+      <span class="tag">yoga</span>
+      <span class="tag">LEGO</span>
+      <span class="tag">travel</span>
+      <span class="tag">video games</span>
+      <span class="tag">Ginger 🐾</span>
+    </div>
+  </section>
+
+  <!-- ================= RESEARCH ================= -->
+  <section class="page" id="research" hidden>
+    <p class="page-title">Waveform <em>systematics</em></p>
+    <p class="body-copy">I run parameter estimation with <a href="https://arxiv.org/abs/1805.10457">RIFT</a> on simulated black-hole binaries where one member is much heavier than the other. The question is simple to state: if you fit the same signal with a different waveform model, how far do your masses and spins move? At high mass ratios the answer is not small, and it matters for the population you build out of those measurements.</p>
+
+    <div class="demo">
+      <div class="demo-head">
+        <h3>What a mass ratio looks like</h3>
+        <span class="tiny">SEOBNRv4 · m₁ = 30 M☉</span>
+      </div>
+      <div class="demo-body">
+        <svg viewBox="0 0 420 250" id="binary" role="img" aria-label="Two bodies orbiting their shared center of mass beside the gravitational-wave strain their orbit would produce">
+          <g id="plane" transform="translate(200 82) rotate(-18)">
+            <ellipse id="orbit2" rx="70" ry="33" fill="none" stroke="#aab394" stroke-opacity=".5" stroke-dasharray="3 4"/>
+            <ellipse id="orbit1" rx="30" ry="14" fill="none" stroke="#d6a087" stroke-opacity=".5"/>
+            <line id="join" x1="0" y1="0" x2="0" y2="0" stroke="#d9bcd0" stroke-opacity=".35"/>
+            <path id="trail" fill="none" stroke="#e4b2ac" stroke-opacity=".45" stroke-width="1.4"/>
+            <circle id="body2" r="8" fill="#09070b" stroke="#aab394" stroke-width="1.8"/>
+            <circle id="body1" r="13" fill="#09070b" stroke="#d6a087" stroke-width="2"/>
+            <path d="M-5 0h10M0-5v10" stroke="#faecd9" stroke-opacity=".85"/>
+            <text id="lab1" font-size="9" font-family="ui-monospace,monospace" fill="#e0bcae" text-anchor="middle">r₁</text>
+            <text id="lab2" font-size="9" font-family="ui-monospace,monospace" fill="#c2cbae" text-anchor="middle">r₂</text>
+          </g>
+          <g id="wave" transform="translate(0 206)" aria-hidden="true">
+            <line x1="20" y1="0" x2="400" y2="0" stroke="#a88196" stroke-opacity=".3"/>
+            <path id="wavepath" fill="none" stroke="#e4b2ac" stroke-width="1.4" stroke-opacity=".92"/>
+            <text x="20" y="-46" fill="#c9aabb" font-size="9" font-family="ui-monospace,monospace" letter-spacing="1">STRAIN h · ×10⁻²¹ · 400 MPC</text>
+            <text x="400" y="-46" text-anchor="end" fill="#b894a8" font-size="8" font-family="ui-monospace,monospace" letter-spacing="1">MERGER</text>
+          </g>
+        </svg>
+        <div>
+          <label class="readout" for="ratio"><span>q = m₂ / m₁</span><output class="qval" id="qval">0.35</output></label>
+          <input id="ratio" type="range" min="0.05" max="1" step="0.05" value="0.35" aria-describedby="qcap hcap">
+          <p class="caption" id="qcap">The primary sits close to the center; the lighter one swings wide.</p>
+          <div class="legend">
+            <span><i class="dot"></i>Primary 30 M☉</span>
+            <span><i class="dot" style="background:#aab394"></i>Secondary q × 30 M☉</span>
+          </div>
+          <p class="caption" id="hcap">peak |h|</p>
+          <div class="scale" role="group" aria-label="Strain amplitude scale">
+            <button data-scale="abs" aria-pressed="true">Real scale</button>
+            <button data-scale="norm" aria-pressed="false">Normalized</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="fine">The trace is a real SEOBNRv4 waveform: zero spin, face-on, m₁ = 30 M☉ and m₂ = q·m₁ at 400 Mpc, shown from 20 Hz to merger. Every q is drawn on the same scale, so an unequal pair really is quieter as well as longer. The orbit beside it shows geometry only, with the separation held fixed. No detector noise. Waveforms generated with <a href="https://doi.org/10.7935/GT1W-FZ16">LALSuite</a> using the SEOBNRv4 model of <a href="https://arxiv.org/abs/1611.03703">Bohé et al. 2017</a>; the same approximants are what RIFT fits in the runs described above. The 30 M☉ primary and 400 Mpc distance are picked to make the plot readable, not taken from a specific event.</p>
+
+    <svg class="doodle" viewBox="0 0 300 16" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M2 9c20-6 38 4 56 2s32-8 50-6 34 9 52 6 33-8 51-5 31 7 46 3" fill="none" stroke="#aab394" stroke-opacity=".5" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+
+    <div class="label"><h2>Also on my desk</h2><span class="spark">✧</span><span class="rule"></span></div>
+    <p class="body-copy" style="margin-bottom:8px">Black-hole formation channels: population synthesis of binaries that form in AGN disks and in embedded star clusters.</p>
+    <button class="more" data-go="agn">Black holes in AGN disks →</button>
+  </section>
+
+  <!-- ================= AGN ================= -->
+  <section class="page" id="agn" hidden>
+    <p class="page-title">Black holes in <em>AGN disks</em></p>
+    <p class="body-copy">A disk of gas around a supermassive black hole is a crowded place. Binaries can be captured, hardened, and driven to merge inside it, so the population that comes out is not the one you get from isolated stellar evolution.</p>
+    <p class="body-copy">I use population synthesis to work out how AGN disks and embedded star clusters form high-mass-ratio binary black holes, and how likely we are to detect them.</p>
+
+    <div class="disk">
+      <canvas id="disk" aria-hidden="true"></canvas>
+      <div class="disk-foot">
+        <span>PAIRS IN THE DISK · SCHEMATIC</span>
+        <span>waves radiate outward</span>
+      </div>
+    </div>
+    <p class="fine">Pairs orbit inside the disk and tighten as they spiral in; the rings stand in for the gravitational waves they radiate. Sizes and speeds are chosen to read on a screen, not taken from a run.</p>
+
+    <div class="tools-list">
+      <a class="tool" href="https://github.com/mcfacts/mcfacts">McFACTS ↗</a>
+      <span class="tool">population synthesis</span>
+    </div>
+  </section>
+
+  <!-- ================= WRITING ================= -->
+  <section class="page" id="writing" hidden>
+    <p class="page-title">Writing</p>
+    <p class="body-copy">Explainers, notes from the middle of a problem, and whatever else I feel like writing. Some of it comes in series, most of it does not.</p>
+    <div class="filters" role="group" aria-label="Filter posts">
+      <button class="filter" data-filter="all" aria-pressed="true">Everything</button>
+      <button class="filter" data-filter="series" aria-pressed="false">Series</button>
+      <button class="filter" data-filter="single" aria-pressed="false">One-offs</button>
+    </div>
+    <div class="writes" id="posts">
+      <button class="post" data-kind="series">
+        <span class="sample">sample</span>
+        <span class="kicker">Series · part 1 of 3</span>
+        <h3>Following one merger, from strain to spin</h3>
+        <p>Start with the trace everyone has seen, then take the noise apart.</p>
+      </button>
+      <button class="post" data-kind="single">
+        <span class="sample">sample</span>
+        <span class="kicker">One-off · 6 min</span>
+        <h3>What a mass ratio actually changes</h3>
+        <p>Why the lighter black hole swings wide, and why that matters for a fit.</p>
+      </button>
+      <button class="post" data-kind="series">
+        <span class="sample">sample</span>
+        <span class="kicker">Series · part 2 of 3</span>
+        <h3>Priors are opinions you can see</h3>
+        <p>What happens to a measurement when you admit what you expected.</p>
+      </button>
+      <button class="post" data-kind="single">
+        <span class="sample">sample</span>
+        <span class="kicker">One-off · notebooks</span>
+        <h3>Notes from a week of failed runs</h3>
+        <p>The unglamorous part, written down honestly.</p>
+      </button>
+    </div>
+    <p class="empty" id="empty" hidden>Nothing here yet.</p>
+    <p class="fine">Series get a contents page and previous/next links. One-offs just sit in the list. Tags are optional.</p>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="page" id="about" hidden>
+    <p class="page-title">About <em>me</em></p>
+    <p class="body-copy">I’m a PhD student in astrophysics at RIT, working on binary black holes, gravitational-wave data analysis, and black-hole formation channels. Before Rochester I was at Caltech for a summer with LIGO, and at Florida working on supermassive black holes in IllustrisTNG.</p>
+
+    <div class="cv-card">
+      <div class="row">
+        <span class="when">2024 — now</span>
+        <div><h3>Graduate research assistant</h3><p>Rochester Institute of Technology. Waveform systematics in high-mass-ratio binaries with RIFT; AGN-disk population models with McFACTS.</p></div>
+      </div>
+      <div class="row">
+        <span class="when">2023 — 24</span>
+        <div><h3>Graduate teaching assistant</h3><p>Galactic Astrophysics and University Astronomy: review sessions, grading, mentoring.</p></div>
+      </div>
+      <div class="row">
+        <span class="when">summer 2022</span>
+        <div><h3>LIGO summer undergraduate research fellow</h3><p>Caltech. Tests of general relativity with simulated ringdown signals and higher-order quasinormal modes.</p></div>
+      </div>
+      <div class="row">
+        <span class="when">2021 — 23</span>
+        <div><h3>Undergraduate research assistant</h3><p>University of Florida. Origin and evolution of supermassive black holes with IllustrisTNG and SMUGGLE.</p></div>
+      </div>
+    </div>
+
+    <div class="photos">
+      <figure class="photo"><img src="https://rachelmechum.github.io/assets/ginger.jpg" alt="Ginger the dog"><figcaption>Ginger</figcaption></figure>
+      <figure class="photo"><img src="https://rachelmechum.github.io/assets/climbing.jpg" alt="Rachel rock climbing"><figcaption>climbing</figcaption></figure>
+      <figure class="photo"><img src="https://rachelmechum.github.io/assets/kayak.jpg" alt="Kayaking"><figcaption>kayaking</figcaption></figure>
+    </div>
+
+    <p class="body-copy" style="margin-top:16px">Otherwise: yoga, LEGO sets, traveling when I can, and games with friends. Ginger has strong opinions about work-life balance.</p>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section class="page" id="contact" hidden>
+    <p class="page-title">Let’s <em>talk</em></p>
+    <p class="body-copy">Happy to hear about gravitational-wave astrophysics, teaching, or collaborations. Email reaches me fastest.</p>
+    <p class="body-copy">
+      <a href="mailto:rm9954@rit.edu">rm9954@rit.edu</a><br>
+      <a href="https://www.linkedin.com/in/rachel-mechum-astro/">LinkedIn</a> · <a href="https://github.com/rachelmechum">GitHub</a> · <a href="https://ccrg.rit.edu/user/rachel.mechum">RIT profile</a>
+    </p>
+  </section>
+
+  <footer>
+    <span><a href="mailto:rm9954@rit.edu">Email</a> · <a href="https://github.com/rachelmechum">GitHub</a> · <a href="https://rachelmechum.github.io/assets/MechumRachel_CurriculumVitae.pdf">CV</a></span>
+    <span>Rachel Mechum ✦ built by hand</span>
+  </footer>
+</main>
+
+<script>
+const site = document.getElementById('site');
+const canvas = document.getElementById('sky');
+const ctx = canvas.getContext('2d');
+const pauseBtn = document.getElementById('pause');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+
+let w = 0, h = 0, cx = 0, cy = 0, sc = 1;
+let t = 0, last = 0, frame = null;
+let running = !reduce.matches;
+let page = 'home';
+let showPair = true;
+
+const stars = Array.from({length: 105}, () => ({
+  x: Math.random(), y: Math.random(),
+  r: .4 + Math.random() * 1.05,
+  a: .18 + Math.random() * .45,
+  p: Math.random() * 6.28
+}));
+
+const smooth = x => x * x * (3 - 2 * x);
+const TILT_X = .878, TILT_Y = .479, SQUASH = .5;
+
+function project(x, z) {
+  const yy = z * SQUASH;
+  const d = 440 / (440 - z * .8);
+  return {
+    x: cx + (x * TILT_X + yy * TILT_Y) * d,
+    y: cy + (-x * TILT_Y + yy * TILT_X) * d,
+    s: d,
+    depth: z
+  };
+}
+
+function blackHole(x, y, r, alpha) {
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  const g = ctx.createRadialGradient(x, y, r * .98, x, y, r * 1.7);
+  g.addColorStop(0, 'rgba(236,196,120,.62)');
+  g.addColorStop(.2, 'rgba(214,166,100,.2)');
+  g.addColorStop(1, 'rgba(199,147,101,0)');
+  ctx.fillStyle = g;
+  ctx.beginPath(); ctx.arc(x, y, r * 1.7, 0, 6.283); ctx.fill();
+  ctx.fillStyle = '#050407';
+  ctx.beginPath(); ctx.arc(x, y, r, 0, 6.283); ctx.fill();
+  ctx.strokeStyle = '#d3ab7c';
+  ctx.lineWidth = 1.15;
+  ctx.stroke();
+  ctx.restore();
+}
+
+function drawSky() {
+  ctx.clearRect(0, 0, w, h);
+  const bg = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(w * .8, 260));
+  bg.addColorStop(0, '#5b3953');
+  bg.addColorStop(1, '#352332');
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, w, h);
+
+  for (const s of stars) {
+    ctx.globalAlpha = s.a * (.78 + .22 * Math.sin(t * .5 + s.p));
+    ctx.fillStyle = '#f3dcca';
+    ctx.beginPath();
+    ctx.arc(((s.x + t * .0008) % 1) * w, s.y * h, s.r, 0, 6.283);
+    ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+  if (!showPair) return;
+
+  const cycle = t % 18;
+  const u = Math.min(cycle / 10, 1);
+  const merge = smooth(Math.max(0, Math.min(1, (cycle - 9.3) / 1.5)));
+  const dist = 66 * sc * Math.pow(1 - u, .8);
+  const ang = .8 + cycle * 1.25 + .065 * cycle * cycle;
+  const fade = cycle > 16 ? 1 - smooth((cycle - 16) / 2) : 1;
+
+  if (merge < 1) {
+    ctx.save();
+    ctx.globalAlpha = .16 * fade;
+    ctx.strokeStyle = '#d4aec2';
+    ctx.lineWidth = .9;
+    ctx.beginPath();
+    for (let k = 0; k <= 90; k++) {
+      const a0 = k / 90 * 6.283;
+      const p = project(Math.cos(a0) * dist, Math.sin(a0) * dist);
+      if (k === 0) ctx.moveTo(p.x, p.y); else ctx.lineTo(p.x, p.y);
+    }
+    ctx.stroke();
+    ctx.restore();
+
+    const objs = [
+      {...project(Math.cos(ang) * dist, Math.sin(ang) * dist), r: 17 * sc},
+      {...project(-Math.cos(ang) * dist, -Math.sin(ang) * dist), r: 15 * sc}
+    ].sort((a, b) => a.depth - b.depth);
+    for (const o of objs) blackHole(o.x, o.y, o.r * o.s, fade * (1 - merge));
+  }
+  if (merge > 0) {
+    for (let j = 0; j < 4; j++) {
+      const age = cycle - 10.1 - j * .72;
+      if (age > 0 && age < 5.6) {
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(-.42);
+        ctx.globalAlpha = fade * .5 * (1 - age / 5.6);
+        ctx.strokeStyle = j % 2 ? '#aab394' : '#e4b2ac';
+        ctx.lineWidth = 1.4;
+        ctx.beginPath();
+        ctx.ellipse(0, 0, (28 + age * 40) * sc, (20 + age * 29) * sc, 0, 0, 6.283);
+        ctx.stroke();
+        ctx.restore();
+      }
+    }
+    blackHole(cx, cy, 23 * sc, fade * merge);
+  }
+}
+
+const el = id => document.getElementById(id);
+const A = 88;
+
+function drawBinary() {
+  const q = Number(el('ratio').value);       // q = m2 / m1
+  const r1 = A * q / (1 + q);                // primary: closer to the barycenter
+  const r2 = A / (1 + q);                    // secondary: swings wide
+
+  el('qval').textContent = q.toFixed(2);
+  el('orbit1').setAttribute('rx', r1); el('orbit1').setAttribute('ry', r1 * .47);
+  el('orbit2').setAttribute('rx', r2); el('orbit2').setAttribute('ry', r2 * .47);
+
+  const a = t * (1.1 + q * .35);
+  const x1 = -r1 * Math.cos(a), y1 = -r1 * Math.sin(a) * .47;
+  const x2 =  r2 * Math.cos(a), y2 =  r2 * Math.sin(a) * .47;
+
+  el('body1').setAttribute('cx', x1); el('body1').setAttribute('cy', y1);
+  el('body2').setAttribute('cx', x2); el('body2').setAttribute('cy', y2);
+  el('body2').setAttribute('r', Math.max(5, 13 * Math.cbrt(q)));
+
+  el('join').setAttribute('x1', x1); el('join').setAttribute('y1', y1);
+  el('join').setAttribute('x2', x2); el('join').setAttribute('y2', y2);
+
+  el('lab1').setAttribute('x', (x1 * .58).toFixed(1));
+  el('lab1').setAttribute('y', (y1 * .58 - 6).toFixed(1));
+  el('lab2').setAttribute('x', (x2 * .58).toFixed(1));
+  el('lab2').setAttribute('y', (y2 * .58 - 6).toFixed(1));
+
+  let d = '';
+  for (let k = 0; k <= 26; k++) {
+    const aa = a - k * .055;
+    d += (k ? 'L' : 'M') + (r2 * Math.cos(aa)).toFixed(1) + ' ' + (r2 * Math.sin(aa) * .47).toFixed(1);
+  }
+  el('trail').setAttribute('d', d);
+
+  el('qcap').textContent = q > .9
+    ? 'Equal masses: both trace the same circle around the center.'
+    : q < .15
+      ? 'An extreme pair. The primary barely moves; the secondary orbits a point it cannot see.'
+      : 'The primary sits close to the center; the lighter one swings wide.';
+}
+
+/* ---------- real strain from LALSuite ---------- */
+const WF = { qs: [0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0], n: 300, peak: 1.743579304e-21,
+  pk: [0.1545, 0.2938, 0.4234, 0.5511, 0.664, 0.7745, 0.8806, 0.9794, 1.0821, 1.1575, 1.241, 1.2927, 1.3874, 1.4387, 1.5049, 1.5482, 1.6247, 1.6836, 1.7301, 1.7436],
+  b64: "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" };
+
+const _wfCache = {};
+let wfMode = 'abs';
+function wfSeries(i) {
+  if (_wfCache[i]) return _wfCache[i];
+  const raw = atob(WF.b64);
+  const out = new Int16Array(WF.n);
+  const base = i * WF.n * 2;
+  for (let k = 0; k < WF.n; k++) {
+    out[k] = (raw.charCodeAt(base + 2 * k) | (raw.charCodeAt(base + 2 * k + 1) << 8)) << 16 >> 16;
+  }
+  return (_wfCache[i] = out);
+}
+
+function nearestQ(q) {
+  let best = 0, dist = 9;
+  WF.qs.forEach((v, i) => { const d = Math.abs(v - q); if (d < dist) { dist = d; best = i; } });
+  return best;
+}
+
+function drawStrain(q) {
+  const i = nearestQ(q);
+  const s = wfSeries(i);
+  let peak = 0;
+  for (let k = 0; k < s.length; k++) if (Math.abs(s[k]) > peak) peak = Math.abs(s[k]);
+
+  const scale = wfMode === 'norm' ? (peak || 1) : 1000;
+  let d = '';
+  for (let k = 0; k < s.length; k++) {
+    const x = 20 + (k / (s.length - 1)) * 380;
+    const y = -(s[k] / scale) * 36;
+    d += (k ? 'L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1);
+  }
+  el('wavepath').setAttribute('d', d);
+
+  const h = WF.pk[i];
+  el('hcap').textContent = 'q = ' + WF.qs[i].toFixed(2) + '  ·  peak |h| ≈ ' + h.toFixed(2) + ' × 10⁻²¹';
+}
+
+/* ---------- AGN disk ---------- */
+const diskCv = document.getElementById('disk');
+const dctx = diskCv.getContext('2d');
+let dw = 0, dh = 0;
+
+const GAS = Array.from({length: 300}, () => ({
+  r: .14 + Math.pow(Math.random(), .55) * .88,
+  a: Math.random() * 6.283,
+  s: .5 + Math.random() * 1.5,
+  alpha: .08 + Math.random() * .5,
+  tone: Math.random()
+}));
+
+const PAIRS = Array.from({length: 5}, (_, i) => ({
+  start: (i / 5) * 6.283 + Math.random() * .5,
+  period: 24 + i * 5.5,
+  offset: i * 4.4,
+  spin: Math.random() * 6.283,
+  tilt: (Math.random() - .5) * .5
+}));
+
+const DISK_SQUASH = .34, DISK_ROT = -.1;
+
+function planePoint(px, py, W, H) {
+  const C = {x: W * .5, y: H * .55};
+  const yr = py * DISK_SQUASH;
+  return {
+    x: C.x + px * Math.cos(DISK_ROT) - yr * Math.sin(DISK_ROT),
+    y: C.y + px * Math.sin(DISK_ROT) + yr * Math.cos(DISK_ROT)
+  };
+}
+
+function sizeDisk() {
+  const ww = diskCv.clientWidth, hh = diskCv.clientHeight;
+  if (!ww || !hh) return;
+  const dpr = Math.min(devicePixelRatio || 1, 2);
+  diskCv.width = ww * dpr;
+  diskCv.height = hh * dpr;
+  dctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  dw = ww; dh = hh;
+}
+
+function drawDisk() {
+  if (!dw) return;
+  const W = dw, H = dh;
+  const R = Math.min(W * .46, H * 1.35);
+  dctx.clearRect(0, 0, W, H);
+
+  for (let i = 0; i < 6; i++) {
+    const rr = R * (.3 + i * .125);
+    dctx.beginPath();
+    dctx.ellipse(W * .5, H * .55, rr, rr * DISK_SQUASH, DISK_ROT, 0, 6.283);
+    dctx.strokeStyle = i % 2 ? 'rgba(170,179,148,.12)' : 'rgba(228,178,172,.10)';
+    dctx.lineWidth = R * .12;
+    dctx.stroke();
+  }
+
+  // dusty spiral arms
+  dctx.save();
+  for (let s = 0; s < 5; s++) {
+    const a0 = s * 1.3 + t * .04;
+    dctx.beginPath();
+    for (let k = 0; k <= 60; k++) {
+      const f = k / 60;
+      const rr = R * (.28 + f * .64);
+      const aa = a0 + f * 2.2;
+      const p = planePoint(Math.cos(aa) * rr, Math.sin(aa) * rr, W, H);
+      if (k) dctx.lineTo(p.x, p.y); else dctx.moveTo(p.x, p.y);
+    }
+    dctx.strokeStyle = 'rgba(240,210,180,.07)';
+    dctx.lineWidth = 7;
+    dctx.lineCap = 'round';
+    dctx.stroke();
+  }
+  dctx.restore();
+
+  for (const g of GAS) {
+    const om = .55 / Math.pow(g.r, 1.5);
+    const ang = g.a + t * om * .35;
+    const p = planePoint(Math.cos(ang) * g.r * R, Math.sin(ang) * g.r * R, W, H);
+    dctx.globalAlpha = g.alpha * (.55 + .45 * Math.sin(t * .7 + g.a));
+    dctx.fillStyle = g.tone > .55 ? '#e8c3bb' : '#b3bd9a';
+    dctx.beginPath();
+    dctx.arc(p.x, p.y, g.s, 0, 6.283);
+    dctx.fill();
+  }
+  dctx.globalAlpha = 1;
+
+  // the supermassive black hole at the center
+  const core = planePoint(0, 0, W, H);
+  const glow = dctx.createRadialGradient(core.x, core.y, 0, core.x, core.y, R * .3);
+  glow.addColorStop(0, 'rgba(240,205,150,.55)');
+  glow.addColorStop(.35, 'rgba(214,166,100,.16)');
+  glow.addColorStop(1, 'rgba(199,147,101,0)');
+  dctx.fillStyle = glow;
+  dctx.beginPath(); dctx.arc(core.x, core.y, R * .3, 0, 6.283); dctx.fill();
+
+  for (const p of PAIRS) {
+    const u = ((t + p.offset) % p.period) / p.period;
+    const rr = R * (.92 - .8 * Math.pow(u, .85));
+    const om = .9 / Math.pow(Math.max(rr / R, .09), 1.5);
+    const ang = p.start + u * om * .55;
+    const sep = 3 + 11 * Math.pow(1 - u, 1.4);
+    const spin = p.spin + t * (2.2 + 5 * u);
+
+    const base = {x: Math.cos(ang) * rr, y: Math.sin(ang) * rr};
+    const dx = Math.cos(spin) * sep * .5, dy = Math.sin(spin) * sep * .5;
+
+    const b1 = planePoint(base.x + dx, base.y + dy, W, H);
+    const b2 = planePoint(base.x - dx, base.y - dy, W, H);
+    const mid = planePoint(base.x, base.y, W, H);
+
+    const edge = Math.min(1, u * 8, (1 - u) * 8);
+    const alpha = Math.max(0, edge);
+
+    // waves leaving the pair
+    for (let k = 0; k < 2; k++) {
+      const age = ((t * .4 + k / 2 + p.spin) % 1);
+      const ringR = 6 + age * 24;
+      dctx.beginPath();
+      dctx.ellipse(mid.x, mid.y, ringR, ringR * DISK_SQUASH, DISK_ROT + p.tilt, 0, 6.283);
+      dctx.setLineDash([2.5, 5]);
+      dctx.strokeStyle = k % 2 ? 'rgba(228,178,172,' : 'rgba(170,179,148,';
+      dctx.strokeStyle += (1 - age) * .5 * alpha + ')';
+      dctx.lineWidth = 1.2;
+      dctx.stroke();
+      dctx.setLineDash([]);
+    }
+
+    dctx.globalAlpha = alpha;
+    const r1 = 4.6, r2 = Math.max(2.2, 4.6 * .55);
+    for (const [b, rad, col] of [[b1, r1, '#e6c193'], [b2, r2, '#b9c3a0']]) {
+      const g2 = dctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, rad * 4);
+      g2.addColorStop(0, 'rgba(240,205,150,.35)');
+      g2.addColorStop(1, 'rgba(240,205,150,0)');
+      dctx.fillStyle = g2;
+      dctx.beginPath(); dctx.arc(b.x, b.y, rad * 4, 0, 6.283); dctx.fill();
+      dctx.fillStyle = '#07050a';
+      dctx.beginPath(); dctx.arc(b.x, b.y, rad, 0, 6.283); dctx.fill();
+      dctx.strokeStyle = col;
+      dctx.lineWidth = 1;
+      dctx.stroke();
+    }
+    dctx.globalAlpha = 1;
+  }
+
+  // the supermassive black hole, drawn over the disk so it sits in the plane
+  dctx.fillStyle = '#050407';
+  dctx.beginPath(); dctx.arc(core.x, core.y, 12, 0, 6.283); dctx.fill();
+  dctx.strokeStyle = '#d3ab7c';
+  dctx.lineWidth = 1.2;
+  dctx.stroke();
+}
+
+function size() {
+  w = site.clientWidth;
+  h = site.clientHeight;
+  const dpr = Math.min(devicePixelRatio || 1, 2);
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  const anchor = site.querySelector('.page:not([hidden]) [data-anchor]');
+  const box = site.getBoundingClientRect();
+  if (anchor) {
+    const b = anchor.getBoundingClientRect();
+    cx = b.left - box.left + b.width * .5;
+    cy = b.top - box.top + b.height * .5;
+    sc = Math.min(1.15, b.width / 180, b.height / 150);
+    showPair = true;
+  } else {
+    cx = w * .5; cy = Math.min(h * .45, 340); sc = .52;
+    showPair = false;
+  }
+  drawSky();
+  drawBinary();
+  drawStrain(Number(el('ratio').value));
+  if (page === 'agn') { sizeDisk(); drawDisk(); }
+}
+
+function tick(now) {
+  frame = null;
+  if (!running) return;
+  if (last) t += Math.min((now - last) / 1000, .06);
+  last = now;
+  drawSky();
+  if (page === 'research') drawBinary();
+  if (page === 'agn') drawDisk();
+  frame = requestAnimationFrame(tick);
+}
+
+function syncMotion() {
+  pauseBtn.textContent = running ? 'Pause motion' : 'Play motion';
+  pauseBtn.setAttribute('aria-pressed', String(running));
+  if (frame !== null) cancelAnimationFrame(frame);
+  frame = null; last = 0;
+  if (running) frame = requestAnimationFrame(tick);
+  else { drawSky(); drawBinary(); if (dw) drawDisk(); }
+}
+
+function go(id) {
+  page = id;
+  document.querySelectorAll('.page').forEach(p => { p.hidden = p.id !== id; });
+  document.querySelectorAll('[data-page]').forEach(b => {
+    if (b.dataset.page === id) b.setAttribute('aria-current', 'page');
+    else b.removeAttribute('aria-current');
+  });
+  size();
+}
+
+document.querySelectorAll('[data-page]').forEach(b => b.addEventListener('click', () => go(b.dataset.page)));
+document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => go(b.dataset.go)));
+
+el('ratio').addEventListener('input', () => { drawBinary(); drawStrain(Number(el('ratio').value)); });
+document.querySelectorAll('.scale button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.scale button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+  wfMode = b.dataset.scale;
+  drawStrain(Number(el('ratio').value));
+}));
+pauseBtn.addEventListener('click', () => { running = !running; syncMotion(); });
+reduce.addEventListener('change', e => { running = !e.matches; syncMotion(); });
+
+document.querySelectorAll('.filter').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.filter').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+  const kind = b.dataset.filter;
+  let shown = 0;
+  document.querySelectorAll('#posts .post').forEach(p => {
+    const on = kind === 'all' || p.dataset.kind === kind;
+    p.hidden = !on;
+    if (on) shown++;
+  });
+  el('empty').hidden = shown > 0;
+}));
+
+new ResizeObserver(() => { size(); if (page === 'agn') { sizeDisk(); drawDisk(); } }).observe(site);
+size();
+syncMotion();
+</script>
+</body>
+</html>
