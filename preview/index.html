@@ -153,12 +153,10 @@
     .photo-row figure { margin: 0; }
     .photo-row img { display: block; width: 156px; height: 156px; object-fit: cover; border: 1px solid var(--line); }
     .photo-row figcaption { margin-top: 5px; color: var(--soft); font-size: .68rem; }
-    .about-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: clamp(28px, 5vw, 64px); align-items: start; max-width: 940px; }
+    .about-layout { max-width: 640px; }
     .about-layout .page-intro { margin-bottom: 0; }
     .about-copy p { margin: 0 0 13px; }
     .about-copy p:last-child { margin-bottom: 0; }
-    .about-photo { margin: 0; }
-    .about-photo img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
     .gallery { column-count: 3; column-gap: 12px; margin-top: 26px; max-width: 900px; }
     .gallery figure { margin: 0 0 12px; break-inside: avoid; }
     .gallery img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
@@ -178,8 +176,6 @@
       .site { width: min(100% - 40px, 720px); }
       .home-grid { grid-template-columns: 1fr; gap: 18px; padding-top: 22px; }
       .hero-art { max-width: 500px; }
-      .about-layout { grid-template-columns: 1fr; }
-      .about-photo { width: min(100%, 360px); }
       .person { grid-template-columns: 120px 1fr; }
       .portrait { width: 120px; height: 150px; }
       nav { gap: 5px; }
@@ -311,7 +307,6 @@
             <p>My dog, Ginger, has been with me since high school. She’s seen me through community college, university, my master’s, and now the home stretch of my PhD. After being my emotional support through all of it, she’s basically a pup with a PhD too.</p>
             <p>Outside of work, I climb, do yoga, and travel when I can. I keep my other interests and current projects under the <a href="#hobbies">Hobbies</a> tab.</p>
           </div>
-          <figure class="about-photo"><img src="assets/ginger-office.jpg" alt="Ginger sleeping under Rachel’s keyboard"></figure>
         </div>
         <div class="gallery">
           <figure><img src="assets/photos/about-01.jpg" alt="Rachel in an astronaut suit"><figcaption>01</figcaption></figure>
@@ -319,10 +314,7 @@
           <figure><img src="assets/photos/about-03.jpg" alt="Rachel in front of a gradient backdrop"><figcaption>03</figcaption></figure>
           <figure><img src="assets/photos/about-04.jpg" alt="Rachel beside her poster at a conference"><figcaption>04</figcaption></figure>
           <figure><img src="assets/photos/about-05.jpg" alt="Rachel at graduation with Ginger in a cap"><figcaption>05</figcaption></figure>
-          <figure><img src="assets/photos/about-06.jpg" alt="Rachel giving a thumbs up by a plaque"><figcaption>06</figcaption></figure>
-          <figure><img src="assets/photos/about-07.jpg" alt="Rachel in a room lit with purple lights"><figcaption>07</figcaption></figure>
           <figure><img src="assets/photos/about-08.jpg" alt="Rachel outdoors in a blue jacket"><figcaption>08</figcaption></figure>
-          <figure><img src="assets/photos/about-09.jpg" alt="Rachel lit in red light"><figcaption>09</figcaption></figure>
         </div>
       </section>
 
