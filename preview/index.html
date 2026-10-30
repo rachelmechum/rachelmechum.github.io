@@ -153,7 +153,10 @@
     .photo-row figure { margin: 0; }
     .photo-row img { display: block; width: 156px; height: 156px; object-fit: cover; border: 1px solid var(--line); }
     .photo-row figcaption { margin-top: 5px; color: var(--soft); font-size: .68rem; }
-    .about-layout { max-width: 640px; }
+    .about-layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: clamp(28px, 5vw, 56px); align-items: start; max-width: 940px; }
+    .about-photo { margin: 0; }
+    .about-photo img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+    @media (max-width: 760px) { .about-layout { grid-template-columns: 1fr; } }
     .about-layout .page-intro { margin-bottom: 0; }
     .about-copy p { margin: 0 0 13px; }
     .about-copy p:last-child { margin-bottom: 0; }
@@ -307,6 +310,7 @@
             <p>My dog, Ginger, has been with me since high school. She’s seen me through community college, university, my master’s, and now the home stretch of my PhD. After being my emotional support through all of it, she’s basically a pup with a PhD too.</p>
             <p>Outside of work, I climb, do yoga, and travel when I can. I keep my other interests and current projects under the <a href="#hobbies">Hobbies</a> tab.</p>
           </div>
+          <figure class="about-photo"><img src="assets/about-me.jpg" alt="Rachel presenting a talk about gravitational waves"></figure>
         </div>
         <div class="gallery">
           <figure><img src="assets/photos/about-01.jpg" alt="Rachel in an astronaut suit"><figcaption>01</figcaption></figure>
