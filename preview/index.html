@@ -159,6 +159,11 @@
     .about-copy p:last-child { margin-bottom: 0; }
     .about-photo { margin: 0; }
     .about-photo img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+    .gallery { column-count: 3; column-gap: 12px; margin-top: 26px; max-width: 900px; }
+    .gallery figure { margin: 0 0 12px; break-inside: avoid; }
+    .gallery img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+    .gallery figcaption { font: .64rem/1.4 var(--mono); letter-spacing: .06em; color: var(--muted); padding-top: 4px; }
+    @media (max-width: 760px) { .gallery { column-count: 2; } }
     .contact-line { font-size: 1.1rem; }
     footer {
       display: flex;
@@ -307,6 +312,17 @@
             <p>Outside of work, I climb, do yoga, and travel when I can. I keep my other interests and current projects under the <a href="#hobbies">Hobbies</a> tab.</p>
           </div>
           <figure class="about-photo"><img src="assets/ginger-office.jpg" alt="Ginger sleeping under Rachel’s keyboard"></figure>
+        </div>
+        <div class="gallery">
+          <figure><img src="assets/photos/about-01.jpg" alt="Rachel in an astronaut suit"><figcaption>01</figcaption></figure>
+          <figure><img src="assets/photos/about-02.jpg" alt="Rachel in a rocket exhibit"><figcaption>02</figcaption></figure>
+          <figure><img src="assets/photos/about-03.jpg" alt="Rachel in front of a gradient backdrop"><figcaption>03</figcaption></figure>
+          <figure><img src="assets/photos/about-04.jpg" alt="Rachel beside her poster at a conference"><figcaption>04</figcaption></figure>
+          <figure><img src="assets/photos/about-05.jpg" alt="Rachel at graduation with Ginger in a cap"><figcaption>05</figcaption></figure>
+          <figure><img src="assets/photos/about-06.jpg" alt="Rachel giving a thumbs up by a plaque"><figcaption>06</figcaption></figure>
+          <figure><img src="assets/photos/about-07.jpg" alt="Rachel in a room lit with purple lights"><figcaption>07</figcaption></figure>
+          <figure><img src="assets/photos/about-08.jpg" alt="Rachel outdoors in a blue jacket"><figcaption>08</figcaption></figure>
+          <figure><img src="assets/photos/about-09.jpg" alt="Rachel lit in red light"><figcaption>09</figcaption></figure>
         </div>
       </section>
 
