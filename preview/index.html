@@ -147,6 +147,14 @@
     .disk-ripple.delay { animation-delay: 2.4s; }
     @keyframes diskOrbit { to { transform: rotate(360deg); } }
     @keyframes diskRipple { 0% { opacity: .5; transform: scale(.35); } 85%, 100% { opacity: 0; transform: scale(1.5); } }
+    .comic-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 16px; max-width: 900px; margin: 24px 0 16px; }
+    .comic-grid figure { margin: 0; }
+    .comic-grid a { display: block; }
+    .comic-grid img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+    .comic-grid a:hover img { border-color: var(--pink); }
+    .comic-grid figcaption { margin-top: 7px; color: var(--soft); font-size: .68rem; line-height: 1.45; }
+    .comic-grid figcaption span { display: block; color: var(--ink); }
+    @media (max-width: 760px) { .comic-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 12px; } }
     .post-note { max-width: 720px; margin: 20px 0; padding: 0 0 18px; border-bottom: 1px solid var(--line); }
     .post-note h2 { margin: 0 0 6px; font: 500 1.1rem/1.4 var(--serif); color: var(--ink); }
     .photo-row { display: flex; flex-wrap: wrap; gap: 14px; margin: 22px 0 34px; }
@@ -294,6 +302,38 @@
       <section class="page" id="writing" hidden>
         <h1 class="page-title">Writing</h1>
         <p class="page-intro">I plan to use this tab for short posts about astronomy, grad school, and life in general. Some posts will stand alone; others might be part of a series.</p>
+        <article class="project">
+          <h2>Black holes in comic form</h2>
+          <p>The <a href="https://www.blackholecomicbook.com/">Black Hole Comics Project</a> is a free comic book about black holes and gravitational waves, developed by physicist Rodrigo Panosso Macedo in collaboration with six artists.</p>
+          <p>Each artist brings a different style to the science. The stories explore how black holes form, spacetime curvature, and the history of Karl Schwarzschild (who derived the first exact black hole solution). The story even ends with a nod to LISA, our future space-based GW detector!</p>
+          <div class="comic-grid">
+            <figure>
+              <a href="https://www.blackholecomicbook.com/artists/"><img src="assets/comics/anna-helminen.jpg" alt="A child and a dog in bubble helmets watch a black hole whose accretion disk bends into an orange ring"></a>
+              <figcaption><span>Some of the Things I Got Wrong</span>Anna Helminen</figcaption>
+            </figure>
+            <figure>
+              <a href="https://www.blackholecomicbook.com/artists/"><img src="assets/comics/giorgina-walther.jpg" alt="A portrait of Karl Schwarzschild next to a glowing black hole, drawn in magenta and blue ink"></a>
+              <figcaption><span>Karl Schwarzschild</span>Giorgina Walther</figcaption>
+            </figure>
+            <figure>
+              <a href="https://www.blackholecomicbook.com/artists/"><img src="assets/comics/leonor-silva.jpg" alt="An abstract coral-like illustration of a black hole forming, with a dark disk at the center"></a>
+              <figcaption><span>How Do Black Holes Form?</span>Leonor Silva</figcaption>
+            </figure>
+            <figure>
+              <a href="https://www.blackholecomicbook.com/artists/"><img src="assets/comics/pelle-ditmer.jpg" alt="A sequence of panels showing a star collapsing into a black hole ringed by swirling red and white debris"></a>
+              <figcaption><span>Black Pearls</span>Pelle Ditmer</figcaption>
+            </figure>
+            <figure>
+              <a href="https://www.blackholecomicbook.com/artists/"><img src="assets/comics/freja-ytting.jpg" alt="Einstein sets a ball on a grid of spacetime, with panels below showing two balls merging and sending ripples across the grid"></a>
+              <figcaption><span>Gravitational Waves</span>Freja Ytting</figcaption>
+            </figure>
+            <figure>
+              <a href="https://www.blackholecomicbook.com/artists/"><img src="assets/comics/wania-nowosielska.jpg" alt="A figure falls toward a black hole through glowing strands of spacetime"></a>
+              <figcaption><span>Spacetime Curvature</span>Wania Nowosielska</figcaption>
+            </figure>
+          </div>
+          <p>You can learn more and download the book at <a href="https://www.blackholecomicbook.com/">blackholecomicbook.com</a>.</p>
+        </article>
         <article class="project">
           <h2>Statistical machine learning for astronomy</h2>
           <p>I came across Yuan-Sen Ting’s <a href="https://arxiv.org/abs/2506.12230"><em>Statistical Machine Learning for Astronomy</em></a> through a LinkedIn post and wanted to share it here.</p>
