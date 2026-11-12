@@ -178,6 +178,18 @@
     .post-note { max-width: 720px; margin: 20px 0; padding: 0 0 18px; border-bottom: 1px solid var(--line); }
     .post-note h2 { margin: 0 0 6px; font: 500 1.1rem/1.4 var(--serif); color: var(--ink); }
     .post-list { max-width: 760px; margin: 4px 0 0; }
+    .publication-group { max-width: 760px; margin: 32px 0 42px; }
+    .publication-group > h2 { font: 600 1rem/1.4 var(--mono); }
+    .publication-note { max-width: 760px; color: var(--soft); font-size: .78rem; }
+    .publication-list { list-style: none; padding: 0; margin: 20px 0 0; }
+    .publication-list li { padding: 24px 0; border-top: 1px solid var(--line); }
+    .publication-list li:last-child { border-bottom: 1px solid var(--line); }
+    .publication-list h3 { margin: 0 0 10px; font: 500 1.4rem/1.3 var(--serif); overflow-wrap: anywhere; }
+    .publication-list h3 a { color: var(--ink); text-decoration: none; }
+    .publication-list h3 a:hover { color: var(--pink); text-decoration: underline; }
+    .publication-list p { margin: 6px 0 0; color: var(--soft); font-size: .8rem; }
+    .publication-list strong { color: var(--lavender); }
+    .publication-links { display: flex; flex-wrap: wrap; gap: 8px 18px; }
     .post-item { border-top: 1px solid var(--line); }
     .post-item:last-child { border-bottom: 1px solid var(--line); }
     .post-item a { display: block; padding: 26px 0 28px; color: var(--ink); text-decoration: none; }
@@ -362,6 +374,7 @@
       <nav aria-label="Main navigation">
         <a href="#about" data-nav="about">About</a>
         <a href="#research" data-nav="research">Research</a>
+        <a href="#publications" data-nav="publications">Publications</a>
         <a href="https://rachelmechum.github.io/assets/MechumRachel_CurriculumVitae.pdf" target="_blank" rel="noopener">CV</a>
         <a href="#blog" data-nav="blog">Blog</a>
         <a href="#hobbies" data-nav="hobbies">Hobbies</a>
@@ -414,6 +427,191 @@
           <p>I use McFACTS to simulate many possible black hole pairs in these environments. The results help predict which mergers detectors might see. Comparing those predictions with observed mergers can help test whether AGN disks are one place black hole pairs form.</p>
           <p><a href="https://github.com/McFACTS/McFACTS">McFACTS on GitHub ↗</a></p>
         </article>
+      </section>
+
+      <section class="page" id="publications" hidden>
+        <h1 class="page-title">Publications</h1>
+        <p class="publication-note">Source: <a href="https://inspirehep.net/authors/2953553">INSPIRE</a>. List checked November 11, 2026.</p>
+
+        <div class="publication-group">
+          <h2>Team Papers</h2>
+          <ol class="publication-list">
+            <li>
+              <h3><a href="https://arxiv.org/abs/2609.37393">Scaling RIFT 1: Extending RIFT to third-generation gravitational-wave analyses</a></h3>
+              <p>R. O’Shaughnessy, A. Jan, J. Lange, <strong>R. Mechum</strong></p>
+              <p>arXiv preprint · September 2026</p>
+              <p class="publication-links"><a href="https://arxiv.org/abs/2609.37393">arXiv</a><a href="https://arxiv.org/pdf/2609.37393">PDF</a><a href="https://scixplorer.org/abs/arXiv:2609.37393">SciX / ADS</a></p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2609.05996">Physics-based phenomenological modeling of binary black hole hierarchical formation 1: Synthetic universes from globular cluster simulations for GWTC</a></h3>
+              <p>R. O’Shaughnessy, <strong>R. Mechum</strong>, M. Qazalbash, Z. Rosenberg, M. Zeeshan</p>
+              <p>arXiv preprint · September 2026</p>
+              <p class="publication-links"><a href="https://arxiv.org/abs/2609.05996">arXiv</a><a href="https://arxiv.org/pdf/2609.05996">PDF</a><a href="https://scixplorer.org/abs/arXiv:2609.05996">SciX / ADS</a></p>
+            </li>
+          </ol>
+        </div>
+
+        <div class="publication-group">
+          <h2>LIGO collaboration papers</h2>
+          <ol class="publication-list">
+            <li>
+              <h3><a href="https://arxiv.org/abs/2610.20276">Search for Compact Binary Coalescences with Sub-solar Mass Components in Data from the Second Part of LIGO-Virgo-KAGRA's Fourth Observing Run</a></h3>
+              <p>arXiv preprint · 2026</p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2608.23477">Updated Upper Limits on the Isotropic Gravitational-Wave Background from LIGO, Virgo, and KAGRA Data through April 2025</a></h3>
+              <p>arXiv preprint · 2026</p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2608.11620">Constraints on ultralight bosons from merging binary and remnant black holes observed during the second and third parts of the fourth LIGO-Virgo-KAGRA observing run</a></h3>
+              <p>arXiv preprint · 2026</p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2608.11673">LIGO A♯: Detector Design and Science Prospects Beyond A+</a></h3>
+              <p>arXiv preprint · 2026</p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2607.19293">GWTC-5.0: Tests of General Relativity</a></h3>
+              <p>arXiv preprint · 2026</p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2607.07765">Sub-torque-balance Upper Limits on Continuous Gravitational Waves from Scorpius X-1</a></h3>
+              <p>The Astrophysical Journal Letters 1010, L23 (2026) · <a href="https://doi.org/10.3847/2041-8213/aea296">Published paper</a></p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2605.27223">GWTC-5.0: An Introduction to Version 5.0 of the Gravitational-Wave Transient Catalog</a></h3>
+              <p>arXiv preprint · 2026</p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2605.27227">GWTC-5.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave Propagation</a></h3>
+              <p>arXiv preprint · 2026</p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2605.27226">GWTC-5.0: Population Properties of Merging Compact Binaries</a></h3>
+              <p>arXiv preprint · 2026</p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2605.27224">GWTC-5.0: Methods for Identifying and Characterizing Gravitational-wave Transients</a></h3>
+              <p>arXiv preprint · 2026</p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2605.27090">Open Data from LIGO, Virgo, and KAGRA through the Second Part of the Fourth Observing Run</a></h3>
+              <p>arXiv preprint · 2026</p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2605.27225">GWTC-5.0: Observations from the Second Part of the Fourth LIGO-Virgo-KAGRA Observing Run and Updates to the Gravitational-Wave Transient Catalog</a></h3>
+              <p>arXiv preprint · 2026</p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2605.11703">GW240925 and GW250207: Astrophysical Calibration of Gravitational Wave Detectors</a></h3>
+              <p>Physical Review Letters 137, 071401 (2026) · <a href="https://doi.org/10.1103/gzrj-mwv3">Published paper</a></p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2605.05444">Searches for Binary Mergers with Sub-solar Mass Components in Data from the First Part of LIGO--Virgo--KAGRA's Fourth Observing Run</a></h3>
+              <p>arXiv preprint · 2026</p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2603.25808">Searches for Continuous Gravitational Waves from Supernova Remnants in the First Part of the LIGO-Virgo-KAGRA Fourth Observing Run</a></h3>
+              <p>The Astrophysical Journal 1004, 204 (2026) · <a href="https://doi.org/10.3847/1538-4357/ae6263">Published paper</a></p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2603.25938">Narrowband Searches for Continuous Gravitational Waves from known Pulsars in the First Two Parts of the Fourth LIGO–Virgo–KAGRA Observing Run</a></h3>
+              <p>The Astrophysical Journal 1005, 221 (2026) · <a href="https://doi.org/10.3847/1538-4357/ae77fc">Published paper</a></p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2603.19021">GWTC-4.0: Tests of General Relativity. III. Tests of the Remnants</a></h3>
+              <p>arXiv preprint · 2026</p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2603.19020">GWTC-4.0: Tests of General Relativity. II. Parameterized Tests</a></h3>
+              <p>arXiv preprint · 2026</p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2603.19019">GWTC-4.0: Tests of General Relativity. I. Overview and General Tests</a></h3>
+              <p>arXiv preprint · 2026</p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2603.14168">All-sky Searches for Continuous Gravitational Waves from Isolated Neutron Stars in the Data from the First Part of the Fourth LIGO-Virgo-KAGRA Observing Run</a></h3>
+              <p>arXiv preprint · 2026</p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2512.17990">Constraints on Gravitational Waves from the 2024 Vela Pulsar Glitch</a></h3>
+              <p>The Astrophysical Journal 1005, 12 (2026) · <a href="https://doi.org/10.3847/1538-4357/ae63bc">Published paper</a></p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2512.16347">GWTC-4.0: Searches for Gravitational-wave Lensing Signatures</a></h3>
+              <p>The Astrophysical Journal 1011, 240 (2026) · <a href="https://doi.org/10.3847/1538-4357/ae9744">Published paper</a></p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2511.19911">Search for planetary-mass ultracompact binaries using data from the first part of the LIGO–Virgo–KAGRA fourth observing run</a></h3>
+              <p>Physical Review D 114, 022005 (2026) · <a href="https://doi.org/10.1103/s551-7pch">Published paper</a></p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2511.16863">All-sky search for continuous gravitational-wave signals from unknown neutron stars in binary systems in the first part of the fourth LIGO-Virgo-KAGRA observing run</a></h3>
+              <p>arXiv preprint · 2025</p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2510.26931">GW241011 and GW241110: Exploring Binary Formation and Fundamental Physics with Asymmetric, High-spin Black Hole Coalescences</a></h3>
+              <p>The Astrophysical Journal Letters 993, L21 (2025) · <a href="https://doi.org/10.3847/2041-8213/ae0d54">Published paper</a></p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2510.27022">Direct Multimodel Dark Matter Search with Gravitational-Wave Interferometers Using Data from the First Part of the Fourth LIGO-Virgo-KAGRA Observing Run</a></h3>
+              <p>Physical Review Letters 137, 131001 (2026) · <a href="https://doi.org/10.1103/qdnd-rsnh">Published paper</a></p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2510.26848">Cosmological and High-Energy Physics Implications from Gravitational-Wave Background Searches in LIGO-Virgo-KAGRA’s O1–O4a Runs</a></h3>
+              <p>Physical Review X 16, 041023 (2026) · <a href="https://doi.org/10.1103/dlfv-z6m2">Published paper</a></p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2510.17487">Directional search for persistent gravitational waves: Results from the first part of LIGO-Virgo-KAGRA’s fourth observing run</a></h3>
+              <p>Physical Review D 114, 022001 (2026) · <a href="https://doi.org/10.1103/wgp7-t8r8">Published paper</a></p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2509.08054">GW250114: Testing Hawking’s Area Law and the Kerr Nature of Black Holes</a></h3>
+              <p>Physical Review Letters 135, 111403 (2025) · <a href="https://doi.org/10.1103/kw5g-d732">Published paper</a></p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2509.07352">Directed searches for gravitational waves from ultralight vector boson clouds around merger remnant and galactic black holes during the first part of the fourth LIGO-Virgo-KAGRA observing run</a></h3>
+              <p>Physical Review D 114, 022006 (2026) · <a href="https://doi.org/10.1103/mjfs-m6t7">Published paper</a></p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2509.07348">GW230814: Investigation of a Loud Gravitational-wave Signal Observed with a Single Detector</a></h3>
+              <p>The Astrophysical Journal Letters 1004, L23 (2026) · <a href="https://doi.org/10.3847/2041-8213/ae2ad3">Published paper</a></p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2509.08099">Black Hole Spectroscopy and Tests of General Relativity with GW250114</a></h3>
+              <p>Physical Review Letters 136, 041403 (2026) · <a href="https://doi.org/10.1103/6c61-fm1n">Published paper</a></p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2509.04348">GWTC-4.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave Propagation</a></h3>
+              <p>The Astrophysical Journal Letters 1007, L17 (2026) · <a href="https://doi.org/10.3847/2041-8213/ae69dd">Published paper</a></p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2508.20721">Upper limits on the isotropic gravitational-wave background from the first part of LIGO, Virgo, and KAGRA’s fourth observing run</a></h3>
+              <p>Physical Review D 114, 042001 (2026) · <a href="https://doi.org/10.1103/wq57-sjt2">Published paper</a></p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2508.18079">Open Data from LIGO, Virgo, and KAGRA through the First Part of the Fourth Observing Run</a></h3>
+              <p>The Astrophysical Journal 1004, 232 (2026) · <a href="https://doi.org/10.3847/1538-4357/ae211e">Published paper</a></p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2508.18082">GWTC-4.0: Updating the Gravitational-Wave Transient Catalog with Observations from the First Part of the Fourth LIGO-Virgo-KAGRA Observing Run</a></h3>
+              <p>The Astrophysical Journal Letters 1004, L22 (2026) · <a href="https://doi.org/10.3847/2041-8213/ae2c74">Published paper</a></p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2507.12282">All-sky search for long-duration gravitational-wave transients in the first part of the fourth LIGO-Virgo-KAGRA observing run</a></h3>
+              <p>Physical Review D 113, 082004 (2026) · <a href="https://doi.org/10.1103/83j3-pgk1">Published paper</a></p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2507.12374">All-sky search for short gravitational-wave bursts in the first part of the fourth LIGO-Virgo-KAGRA observing run</a></h3>
+              <p>Physical Review D 112, 102005 (2025) · <a href="https://doi.org/10.1103/wjdz-jdby">Published paper</a></p>
+            </li>
+            <li>
+              <h3><a href="https://arxiv.org/abs/2507.08219">GW231123: A Binary Black Hole Merger with Total Mass 190–265 M☉</a></h3>
+              <p>The Astrophysical Journal Letters 993, L25 (2025) · <a href="https://doi.org/10.3847/2041-8213/ae0c9c">Published paper</a></p>
+            </li>
+          </ol>
+        </div>
       </section>
 
       <section class="page" id="blog" hidden>
@@ -561,7 +759,7 @@
   </div>
 
   <script>
-    const pages = ["home", "research", "blog", "about", "hobbies", "contact"];
+    const pages = ["home", "research", "publications", "blog", "about", "hobbies", "contact"];
     function showPage() {
       let raw = location.hash.slice(1) || "home";
       if (raw === "writing") raw = "blog";
